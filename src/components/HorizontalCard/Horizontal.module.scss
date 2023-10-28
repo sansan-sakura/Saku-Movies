@@ -1,0 +1,47 @@
+.card_wrapper,
+.card_outer {
+  width: 300px;
+  position: relative;
+  border-radius: 10px;
+  overflow: hidden;
+  color: #fff;
+  position: relative;
+}
+
+.card_outer {
+  margin-bottom: 4px;
+}
+
+.card_wrapper img {
+  width: 100%;
+  min-height: 100%;
+  transition: all 0.2s ease;
+}
+
+.title {
+  font-size: 14px;
+}
+
+.genre {
+  font-size: 16px;
+  font-weight: 800;
+}
+
+.description {
+  padding-left: 4px;
+  letter-spacing: 0.5px;
+}
+
+.button_box {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  transition: all 0.2s ease;
+}
+
+@media (min-width: 768px) {
+  .card_wrapper,
+  .card_outer {
+    width: 400px;
+  }
+}

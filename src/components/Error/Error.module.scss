@@ -1,0 +1,18 @@
+.error_page {
+  height: 80vh;
+  font-family: "Oswald";
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.error_box {
+  font-size: 18px;
+  text-align: center;
+}
+
+@media (min-width: 600px) {
+  .error_box {
+    font-size: 30px;
+  }
+}

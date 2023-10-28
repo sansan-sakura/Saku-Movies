@@ -1,0 +1,146 @@
+.detail_wrapper {
+  min-height: 80vh;
+  color: #fff;
+}
+.detail {
+  height: 30vh;
+}
+
+.detail_img {
+  height: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  justify-content: space-between;
+}
+
+.video {
+  width: 140%;
+  height: 140%;
+  position: absolute;
+  top: -20%;
+  left: -20%;
+  z-index: -1;
+}
+
+.video_box {
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+.deco_box {
+  content: " ";
+  width: 10%;
+  height: 100%;
+  background-color: rgb(255 255 255 / 0.3);
+  backdrop-filter: blur(10px);
+}
+
+.main_wrapper {
+  width: 94%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-top: 20px;
+}
+
+.top_detail_box {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.main_wrapper h1 {
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+.text_box {
+  width: 90%;
+  font-family: "Roboto";
+  line-height: 1.6;
+}
+
+.poster_img {
+  width: 200px;
+  border: 0.5px solid #fff;
+  margin-bottom: 6px;
+}
+
+.details_box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+}
+
+.image_box {
+  width: 200px;
+  font-size: 14px;
+}
+
+.genre_box {
+  margin-top: 6px;
+  width: 100%;
+  display: flex;
+  column-gap: 6px;
+  row-gap: 4px;
+  flex-wrap: wrap;
+}
+
+.genre_box span {
+  padding: 0 4px;
+  border: 0.5px solid #fff;
+}
+
+.button {
+  cursor: pointer;
+}
+
+@media (min-width: 500px) {
+  .deco_box {
+    width: 16%;
+  }
+
+  .details_box {
+    display: grid;
+    gap: 20px;
+    grid-template-columns: min-content 1fr;
+    align-items: flex-start;
+  }
+
+  .top_detail_box {
+    text-align: start;
+  }
+  .text_box {
+    width: 100%;
+  }
+}
+
+@media (min-width: 640px) {
+  .deco_box {
+    width: 20%;
+  }
+  .main_wrapper {
+    width: 80%;
+    font-size: 18px;
+  }
+}
+
+@media (min-width: 768px) {
+  .main_wrapper {
+    width: 70%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-top: 20px;
+  }
+}
+@media (min-width: 1024px) {
+  .detail {
+    height: 40vh;
+  }
+
+  .main_wrapper {
+    width: 60%;
+  }
+}

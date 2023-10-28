@@ -1,0 +1,58 @@
+.button {
+  width: 30px;
+  height: 60px;
+  border-radius: 3%;
+  border: solid #fff 1px;
+  z-index: 9999;
+  cursor: pointer;
+}
+
+.button:active,
+button {
+  border: 0;
+  outline: 0;
+}
+
+.button img {
+  transform: translateX(4px);
+  border-radius: 50%;
+  width: 20px;
+  height: 40px;
+  filter: brightness(100%) invert(100%);
+}
+
+.right-click {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translate(42%, -50%);
+}
+
+.left-click {
+  position: absolute;
+  left: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.left-click img {
+  transform: rotate(180deg) translateX(-4px);
+}
+
+@media (min-width: 768px) {
+  .button {
+    background-color: transparent;
+    width: 30px;
+    height: 60px;
+  }
+
+  .button img {
+    width: 30px;
+    height: 60px;
+
+    transform: translateX(0);
+  }
+  .left-click img {
+    transform: rotate(180deg);
+  }
+}

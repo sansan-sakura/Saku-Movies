@@ -1,0 +1,9 @@
+.main_wrapper {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  min-height: 100vh;
+}
+
+.main {
+  width: 100vw;
+}

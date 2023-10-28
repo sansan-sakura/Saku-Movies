@@ -1,0 +1,153 @@
+@use "../../styles/mixins.scss" as *;
+
+.carousel_outer {
+  margin: 0 auto;
+  overflow: hidden;
+  position: relative;
+  height: 100%;
+  width: 100%;
+
+  @include md {
+    margin: unset;
+    width: 50vw;
+    height: auto;
+  }
+}
+
+.hero_img_inner_wrapper {
+  width: 100%;
+}
+
+.hero_image_wrapper {
+  height: fit-content;
+  width: 100vw;
+  overflow: hidden;
+  z-index: 1000;
+  flex: 1 0 100%;
+  scroll-snap-align: start;
+  display: flex;
+}
+
+.inner_image_box {
+  background: black;
+  height: 100px;
+  width: 700px;
+  color: #fff;
+  position: relative;
+
+  &_inner {
+    width: fit-content;
+    position: absolute;
+    bottom: 30px;
+    left: 20px;
+    display: flex;
+    align-items: flex-end;
+    gap: 20px;
+  }
+}
+
+.poster_img {
+  width: 140px;
+  height: fit-content;
+}
+
+.inner_image_box h2 {
+  font-size: 20px;
+  line-height: 1.4;
+  font-weight: 800;
+}
+
+.pagination_box {
+  position: absolute;
+  left: 50%;
+  bottom: 6px;
+  transform: translateX(-50%);
+  min-width: fit-content;
+  display: flex;
+  gap: 10px;
+}
+
+.pagination {
+  content: "";
+  height: 12px;
+  width: 12px;
+  border-radius: 50%;
+  display: inline-block;
+  border: none;
+  background-color: rgba(153, 153, 153, 0.515);
+  cursor: pointer;
+}
+
+// @media (min-width: 400px) {
+//   .hero_image_wrapper {
+//     height: 30vh;
+//     min-height: 360px;
+//   }
+
+//   .pagination_box {
+//     bottom: 2px;
+//   }
+// }
+
+// @media (min-width: 500px) {
+//   .pagination_box {
+//     bottom: 20px;
+//   }
+// }
+
+// @media (min-width: 640px) {
+//   .hero_wrapper {
+//     margin-bottom: 60px;
+//     padding-left: 30px;
+//     padding-right: 30px;
+//   }
+// }
+
+// @media (min-width: 768px) {
+//   .carousel_outer {
+//     margin: 0 auto;
+//     overflow: hidden;
+//     position: relative;
+//     height: 100%;
+//     // width: 90vw;
+//   }
+
+//   .hero_image_wrapper {
+//     height: 40vh;
+//     min-height: 400px;
+//   }
+
+//   .inner_image_box {
+//     display: block;
+//     margin-bottom: 50px;
+//     margin-left: 25px;
+//   }
+
+//   .pagination_box {
+//     bottom: 10px;
+//   }
+// }
+
+// @media (min-width: 1280px) {
+//   .hero_image_wrapper {
+//     height: 50vh;
+//     min-height: 500px;
+//     // width: 84vw;
+//     background-position-y: 30%;
+//     flex: 1 0 100%;
+//   }
+
+//   .inner_image_box {
+//     width: 30%;
+//     padding: 20px;
+//   }
+
+//   .inner_image_box p {
+//     font-size: 16px;
+//     line-height: 1.4;
+//   }
+
+//   .inner_image_box h2 {
+//     font-size: 20px;
+//   }
+// }

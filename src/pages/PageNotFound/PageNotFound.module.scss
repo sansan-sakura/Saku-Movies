@@ -1,0 +1,49 @@
+.wrapper {
+  min-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: "Oswald";
+}
+
+.inner_wrapper {
+  position: relative;
+}
+
+.text_box {
+  text-align: center;
+}
+
+.outer_box {
+  position: absolute;
+  content: "";
+  top: -70px;
+  left: -30px;
+  width: 240px;
+  height: 260px;
+  border: 5px solid #fff;
+  border-radius: 50%;
+  filter: drop-shadow(30px 24px 10px #fff);
+  animation-name: rotate;
+  animation-duration: 5s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+
+.text {
+  font-size: 30px;
+}
+
+.num {
+  font-size: 50px;
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(-360deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
