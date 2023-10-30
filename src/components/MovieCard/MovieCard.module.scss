@@ -18,7 +18,7 @@
 
 .inner_card h3 {
   font-weight: 800;
-  font-size: 16px;
+  font-size: 14px;
 }
 
 .card_wrapper img {
@@ -32,7 +32,7 @@
   margin-bottom: 4px;
 }
 .card_wrapper {
-  width: 160px;
+  width: 140px;
   position: relative;
   overflow: hidden;
   height: fit-content;
@@ -40,11 +40,19 @@
 
 @media (min-width: 768px) {
   .card_wrapper {
-    width: 200px;
+    width: 150px;
+  }
+
+  .inner_card h3 {
+    font-size: 16px;
+  }
+
+  .inner_card {
+    height: 150px;
   }
 }
 @media (min-width: 1024px) {
   .card_wrapper {
-    width: 220px;
+    width: 180px;
   }
 }

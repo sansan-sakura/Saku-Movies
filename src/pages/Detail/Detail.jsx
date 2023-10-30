@@ -1,171 +1,169 @@
-import React, { useEffect, useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
-import useSWR from "swr";
-import styles from "./Detail.module.css";
+import { useEffect, useMemo, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+
+import styles from "./Detail.module.scss";
 import { LoadingFullPage } from "../../components/LoaingFullPage";
-import { Navbar } from "../../components/Navbar";
-import { Footer } from "../../components/Footer";
 import { ScrollToTop } from "../../components/ScrollToTop";
 import { Error } from "../../components/Error";
-
-const options = {
-  method: "GET",
-  headers: {
-    accept: "application/json",
-
-    Authorization: import.meta.env.VITE_API_KEY, // eslint-disable-line
-  },
-};
-
-const fetcher = async (path) => {
-  const data = await fetch(`https://api.themoviedb.org/3/movie/${path}`, options).then((response) =>
-    response.json()
-  );
-
-  return data;
-};
+import useFetchData from "../../hooks/useFetchData";
+import { Header } from "../../components/Header";
+import { Heading } from "../../components/Heading/Heading";
+import { Title } from "../../components/Title";
 
 function Detail() {
-  const location = useLocation();
   const navigate = useNavigate();
+  const { id } = useParams();
 
-  const backdropPath = new URLSearchParams(location.search).get("backdrop_path");
-  const posterPath = new URLSearchParams(location.search).get("poster_path");
-  const selectedMovieId = new URLSearchParams(location.search).get("movie_id");
-
-  const [selectedMovie, setSelectedMovie] = useState(null);
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [selectedMovie, setSelectedMovie] = useState(id);
 
   const [triggerMovie, setTriggerMovie] = useState({ trigger: false, id: null });
   const [startVideo, setStartVideo] = useState({ start: false, url: "" });
 
-  useEffect(() => {
-    async function fetchMovieDetails() {
-      try {
-        const response = await fetch(
-          `https://api.themoviedb.org/3/movie/${selectedMovieId}?language=en-US`,
-          options
-        );
-        if (response.status === 200) {
-          const data = await response.json();
+  const { data, error, isLoading } = useFetchData(`movie/${id}`);
+  if (isLoading) return <p>Loading</p>;
 
-          setSelectedMovie(data);
-        } else if (response.status === 401) {
-          setError("Unauthorized: Please check your API key and permissions.");
-        } else {
-          setError(`Error: ${response.status} - ${response.statusText}`);
-        }
-        setIsLoading(false);
-      } catch (err) {
-        console.error(err);
-        setError("An error occurred while fetching data.");
-        setIsLoading(false);
-      }
-    }
+  const {
+    backdrop_path,
+    belongs_to_collection,
+    budget,
+    poster_path,
+    genres,
+    homepage,
+    imdb_id,
+    original_language,
+    overview,
+    popularity,
+    production_companies,
+    production_countries,
+    runtime,
+    vote_average,
+    title,
+    release_date,
+    status,
+    tagline,
+  } = data;
 
-    if (selectedMovieId) {
-      fetchMovieDetails();
-    }
-  }, [selectedMovieId]);
+  // const { data, isImageLoading } = useSWR(
+  //   triggerMovie.trigger ? `${triggerMovie.id}/videos?language=en-US` : null,
+  //   fetcher
+  // );
 
-  const { data, isImageLoading } = useSWR(
-    triggerMovie.trigger ? `${triggerMovie.id}/videos?language=en-US` : null,
-    fetcher
-  );
+  // useEffect(() => {
+  //   if (!isImageLoading) setTriggerMovie(false);
+  //   if (data) {
+  //     const youtube = data.results.map((obj) => Object.values(obj).includes("YouTube"));
+  //     youtube &&
+  //       data.results.length > 0 &&
+  //       setStartVideo({
+  //         start: true,
+  //         url: ` https://www.youtube.com/embed/${data.results[0].key}?autoplay=1&mute=1&loop=1&playlist=${data.results[0].key}`,
+  //       });
+  //   }
+  // }, [isImageLoading, data]);
 
-  useEffect(() => {
-    if (!isImageLoading) setTriggerMovie(false);
-    if (data) {
-      const youtube = data.results.map((obj) => Object.values(obj).includes("YouTube"));
-      youtube &&
-        data.results.length > 0 &&
-        setStartVideo({
-          start: true,
-          url: ` https://www.youtube.com/embed/${data.results[0].key}?autoplay=1&mute=1&loop=1&playlist=${data.results[0].key}`,
-        });
-    }
-  }, [isImageLoading, data]);
-
-  useEffect(() => {
-    if (!selectedMovie || !selectedMovie.title) return;
-    document.title = `Movie | ${selectedMovie.title}`;
-    return function () {
-      document.title = " S x S MOVIES";
-    };
-  }, [selectedMovie]);
+  // useEffect(() => {
+  //   if (!selectedMovie || !selectedMovie.title) return;
+  //   document.title = `Movie | ${selectedMovie.title}`;
+  //   return function () {
+  //     document.title = " S x S MOVIES";
+  //   };
+  // }, [selectedMovie]);
 
   return (
-    <React.Fragment>
+    <>
       <ScrollToTop />
-      <Navbar />
       {!isLoading ? (
         !error ? (
           selectedMovie ? (
-            // <div>
-            //   <div>
-            //     <h1>{selectedMovie.title}</h1>
-            //     {backdropPath ? ( // Check if backdropPath is not null
-            //       <img
-            //         src={`https://image.tmdb.org/t/p/w780${backdropPath}`}
-            //         alt={selectedMovie.title}
-            //       />
-            //     ) : (
-            //       <p>No backdrop image available</p>
-            //     )}
-            //     <p>{selectedMovie.overview}</p>
-            //     <p>Release Date: {selectedMovie.release_date}</p>
-            //   </div>
-
             <section className={styles.detail_wrapper}>
-              <div className={styles.detail}>
-                <div
-                  onMouseEnter={() => setTriggerMovie({ trigger: true, id: selectedMovie.id })}
-                  className={styles.detail_img}
-                  style={{
-                    backgroundImage: selectedMovie.backdrop_path
-                      ? `url(https://image.tmdb.org/t/p/original${selectedMovie.backdrop_path})`
-                      : `url(https://image.tmdb.org/t/p/original${posterPath})`,
-                    display: !startVideo.start ? "flex" : "none",
-                  }}
-                >
-                  <div className={styles.deco_box}></div>
-                  <div className={styles.deco_box}></div>
+              <div className={styles.container}>
+                <div className={styles.upper_details_box}>
+                  <a onClick={() => navigate(-1)}>
+                    <p className={styles.button}> &#x3c; BACK</p>
+                  </a>
+                  <div className={styles.upper_details_box_innerbox}>
+                    <h1>{title}</h1>
+                    <p>{tagline}</p>
+                    <div>
+                      <p>Release Date: {release_date}</p>
+                      <p>Status: {status}</p>
+                      <span>{runtime} min</span>
+                    </div>
+                  </div>
                 </div>
-                {startVideo.start && (
+                <div className={styles.hero}>
+                  <img
+                    className={styles.hero_poster_img}
+                    src={`https://image.tmdb.org/t/p/w780${poster_path}`}
+                    alt={title}
+                  />
+                  <div
+                    onMouseEnter={() => setTriggerMovie({ trigger: true, id: id })}
+                    className={styles.hero_bd_img}
+                    style={{
+                      backgroundImage: backdrop_path
+                        ? `url(https://image.tmdb.org/t/p/original${backdrop_path})`
+                        : `url(https://image.tmdb.org/t/p/original${poster_path})`,
+                      display: !startVideo.start ? "flex" : "none",
+                    }}
+                  ></div>
+                  {/* {startVideo.start && (
                   <div className={styles.video_box}>
                     <iframe className={styles.video} id="player" src={`${startVideo.url}`}></iframe>
                   </div>
-                )}
-              </div>
-              <div className={styles.main_wrapper}>
-                <a onClick={() => navigate(-1)}>
-                  <p className={styles.button}> &#x3c; BACK</p>
-                </a>
-
-                <div className={styles.top_detail_box}>
-                  <h1>{selectedMovie.title}</h1>
-                  <p>{selectedMovie.tagline}</p>
+                )} */}
                 </div>
-                <div className={styles.details_box}>
-                  <div className={styles.image_box}>
-                    <img
-                      className={styles.poster_img}
-                      src={`https://image.tmdb.org/t/p/w780${posterPath}`}
-                      alt={selectedMovie.title}
-                    />
-                    <p>Release Date: {selectedMovie.release_date}</p>
-                    <div className={styles.genre_box}>
-                      {selectedMovie.genres.length > 0 &&
-                        selectedMovie.genres.map((genre) => (
-                          <span key={genre.id}>{genre.name}</span>
+
+                <div className={styles.main}>
+                  <div className={styles.main_inner}>
+                    <div className={styles.main_genre}>
+                      {genres.length > 0 &&
+                        genres.map((genre) => <span key={genre.id}>{genre.name}</span>)}
+                    </div>
+                    <div className={styles.main_text}>
+                      <p>{overview}</p>
+                    </div>
+
+                    <div className={styles.main_rating}>
+                      <span>⭐️ {vote_average.toFixed(1)} / 10</span>
+                      <span>Populality : {popularity.toFixed(1)}</span>
+                    </div>
+                    <a href={homepage}>Check more</a>
+                    <div className={styles.main_details}>
+                      <div>
+                        {budget > 0 && <p>budget: {budget}</p>}
+                        <span>imdb ID : {imdb_id}</span>
+                        <p>Original language : {original_language}</p>
+                      </div>
+                      <p>
+                        Production Country :
+                        {production_countries.map((con) => (
+                          <span key={con.id}> {con.name}</span>
                         ))}
+                      </p>
+                      <div>
+                        <h6>Production Company :</h6>
+                        {production_companies.map((comp) => (
+                          <p key={comp.id}>{comp.name}</p>
+                        ))}
+                      </div>
                     </div>
                   </div>
-                  <div className={styles.text_box}>
-                    <p>{selectedMovie.overview}</p>
-                  </div>
                 </div>
+
+                {belongs_to_collection && (
+                  <>
+                    <div className={styles.collection}>
+                      <Title>Check out the Collection</Title>
+                      <div className={styles.collection_img}>
+                        <img
+                          src={`https://image.tmdb.org/t/p/original${belongs_to_collection.poster_path}`}
+                        />
+                        <p>{belongs_to_collection.name}</p>
+                      </div>
+                    </div>
+                  </>
+                )}
               </div>
             </section>
           ) : (
@@ -178,8 +176,7 @@ function Detail() {
       ) : (
         <LoadingFullPage />
       )}
-      <Footer />
-    </React.Fragment>
+    </>
   );
 }
 

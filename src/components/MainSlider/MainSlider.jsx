@@ -3,22 +3,28 @@ import styles from "./MainSlider.module.scss";
 import { Slider } from "../Slider";
 import { MovieCard } from "../MovieCard";
 import HorizontalCard from "../HorizontalCard/HorizontalCard";
+import { StarCard } from "../StarCard/StarCard";
 
-function MainSlider({ windowWidth, movies, horizontal = true }) {
+function MainSlider({ windowWidth, movies, horizontal = true, starCard = false }) {
   const currentSliderImageWidth = useMemo(() => {
     return (windowWidth * 0.84) / 2;
   }, [windowWidth]);
 
   const moviesArr = Object.values(movies);
-
+  console.log(movies);
   return (
     <>
       <div className={styles.slider_wrapper}>
-        {/* <h3 className={styles.title}>{Object.keys(movies)}</h3> */}
         <Slider currentImageWidth={currentSliderImageWidth}>
           {moviesArr.map((movie) => (
             <li className={styles.scroll_item} key={movie.id}>
-              {horizontal ? <HorizontalCard movie={movie} /> : <MovieCard movie={movie} />}
+              {!starCard && horizontal ? (
+                <HorizontalCard movie={movie} />
+              ) : !starCard ? (
+                <MovieCard movie={movie} />
+              ) : (
+                <StarCard movie={movie} />
+              )}
             </li>
           ))}
         </Slider>

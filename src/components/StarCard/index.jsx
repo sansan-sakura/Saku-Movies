@@ -1,0 +1,1 @@
+export { StarCard } from "./StarCard";

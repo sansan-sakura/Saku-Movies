@@ -9,7 +9,7 @@
 .slider_inner {
   width: 100%;
   display: flex;
-  gap: 20px;
+  gap: 10px;
   scroll-behavior: smooth;
   -ms-overflow-style: none;
   scroll-snap-type: x mandatory;

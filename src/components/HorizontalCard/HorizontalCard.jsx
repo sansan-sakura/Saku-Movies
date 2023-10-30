@@ -1,6 +1,6 @@
 import { useState } from "react";
 import useSWR from "swr";
-import styles from "./Horizontal.module.scss";
+import styles from "./HorizontalCard.module.scss";
 import { Link } from "react-router-dom";
 
 import { Loading } from "../Loading";
@@ -25,7 +25,7 @@ const fetcher = async () => {
 function HorizontalCard({ movie }) {
   const [onMouse, setOnMouse] = useState(false);
 
-  const { title = null, name = null, backdrop_path: poster, id } = movie;
+  const { title = null, name = null, backdrop_path: poster, id, vote_average } = movie;
 
   const { data, error, isLoading } = useSWR("getGenre", fetcher);
 
@@ -40,10 +40,7 @@ function HorizontalCard({ movie }) {
     <>
       {poster && (
         <div className={styles.card_outer}>
-          <Link
-            to={`/movie/${id}?poster_path=${poster}&movie_id=${id}`}
-            style={{ textDecoration: "none" }}
-          >
+          <Link to={`/movie/${id}`} style={{ textDecoration: "none" }}>
             <div
               className={styles.card_wrapper}
               onMouseEnter={() => setOnMouse(true)}
@@ -56,8 +53,13 @@ function HorizontalCard({ movie }) {
             </div>
           </Link>
           <div className={styles.description}>
-            <p className={styles.genre}>{genre ? genre.name : ""}&nbsp;</p>
-            <p className={styles.title}>{title ? title : name}</p>
+            <div>
+              <p className={styles.genre}>{genre ? genre.name : ""}&nbsp;</p>
+              <p className={styles.title}>{title ? title : name}</p>
+            </div>
+            <div>
+              <span>⭐️</span> <span>{vote_average}</span>
+            </div>
           </div>
         </div>
       )}

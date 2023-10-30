@@ -1,8 +1,7 @@
 .card_wrapper,
 .card_outer {
-  width: 300px;
+  width: 220px;
   position: relative;
-  border-radius: 10px;
   overflow: hidden;
   color: #fff;
   position: relative;
@@ -28,7 +27,10 @@
 }
 
 .description {
+  display: flex;
+  justify-content: space-between;
   padding-left: 4px;
+  padding-top: 4px;
   letter-spacing: 0.5px;
 }
 
@@ -42,6 +44,6 @@
 @media (min-width: 768px) {
   .card_wrapper,
   .card_outer {
-    width: 400px;
+    width: 300px;
   }
 }

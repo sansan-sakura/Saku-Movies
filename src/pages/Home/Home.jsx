@@ -11,6 +11,7 @@ import { Error } from "../../components/Error";
 import { urlsForHomePage as urls } from "../../statics/urls";
 import { MainSlider } from "../../components/MainSlider";
 import { Title } from "../../components/Title";
+import { Heading } from "../../components/Heading/Heading";
 
 function Home() {
   const windowWidth = useScreenSize();
@@ -48,18 +49,17 @@ function Home() {
         <div className={styles.inner_main}>
           <Title des="Picked up Popular movies for you">Popular Movies</Title>
           <MainSlider windowWidth={windowWidth} movies={popularMovies} horizontal={false} />
-
-          {/* <div className={styles.movies_slider_box}>
-            {moviesArr.map((movies) => (
-              <MainSlider
-                key={movies[0]}
-                windowWidth={windowWidth}
-                movies={movies}
-                horizontal={false}
-              />
-            ))}
-          </div> */}
-          {/* <div className={styles.tvs_slider_box}></div> */}
+          <Title des="Now in Trend">Trending Movies</Title>
+          <MainSlider windowWidth={windowWidth} movies={trendingMovies} horizontal={false} />
+          <Title des="Top Rated by our users">Top Rated TV shows</Title>
+          <MainSlider windowWidth={windowWidth} movies={topRatedTvs} />
+          <Heading>Explore upcoming movies</Heading>
+          <Title des="Discover new movies">UP coming Movies</Title>
+          <MainSlider windowWidth={windowWidth} movies={upcomingMovies} horizontal={false} />
+          <Title>Airing Today's TVs</Title>
+          <MainSlider windowWidth={windowWidth} movies={airingTodayTvs} />
+          <Title>People</Title>
+          <MainSlider windowWidth={windowWidth} movies={trendingPeople} starCard={true} />
         </div>
       </div>
     </>

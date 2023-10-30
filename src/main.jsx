@@ -5,7 +5,7 @@ import "./styles/index.scss";
 
 import { MovieProvider } from "./context/MovieContext";
 import { Home } from "./pages/Home";
-import { MovieDetail } from "./pages/MovieDetail";
+import { Detail } from "./pages/Detail";
 import { PageNotFound } from "./pages/PageNotFound";
 import AppLayout from "./pages/AppLayout/AppLayout";
 
@@ -17,8 +17,8 @@ const router = createBrowserRouter([
     children: [
       { index: true, element: <Home />, errorElement: <PageNotFound /> },
       {
-        path: "movies/:movieTitle",
-        element: <MovieDetail />,
+        path: "movie/:id",
+        element: <Detail />,
         errorElement: <PageNotFound />,
       },
     ],
