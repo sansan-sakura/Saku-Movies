@@ -1,0 +1,1 @@
+export { HeroAside } from "./HeroAside";
