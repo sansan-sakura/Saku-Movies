@@ -12,6 +12,7 @@ import { urlsForHomePage as urls } from "../../statics/urls";
 import { MainSlider } from "../../components/MainSlider";
 import { Title } from "../../components/Title";
 import { Heading } from "../../components/Heading/Heading";
+import { Hero } from "../../components/Hero";
 
 function Home() {
   const windowWidth = useScreenSize();
@@ -43,7 +44,7 @@ function Home() {
 
       <div className={styles.container}>
         <div className={styles.hero_wrapper}>
-          <HeroCarousel windowWidth={windowWidth} movies={nowPlayingMovies.slice(0, 6)} />
+          <Hero windowWidth={windowWidth} movies={nowPlayingMovies.slice(0, 6)} />
         </div>
 
         <div className={styles.inner_main}>

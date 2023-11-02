@@ -1,3 +1,4 @@
+@use "../../styles/mixins.scss" as *;
 .detail_wrapper {
   min-height: 80vh;
   color: #fff;
@@ -6,6 +7,11 @@
 .container {
   margin: 0 auto;
   width: 90%;
+
+  @include md {
+    max-width: 900px;
+    margin: 0 auto;
+  }
 }
 
 .upper_details_box {
@@ -29,6 +35,10 @@
       padding-bottom: 4px;
     }
   }
+
+  & a {
+    font-size: 14px;
+  }
 }
 
 .hero {
@@ -42,47 +52,56 @@
     border: 0.5px solid #fff;
   }
 
-  &_bd_img {
+  &_img_video_box {
     height: 100%;
     width: 100%;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    display: flex;
-    justify-content: space-between;
-  }
-}
-
-.video {
-  width: 140%;
-  height: 140%;
-  position: absolute;
-  top: -20%;
-  left: -20%;
-  z-index: -1;
-  &_box {
-    height: 100%;
     overflow: hidden;
     position: relative;
+  }
+
+  &_bd_img {
+    height: auto;
+    width: 100%;
+  }
+
+  &_video_box {
+    height: 100%;
+    width: 100%;
+    position: relative;
+
+    & iframe {
+      scale: 1.2;
+      pointer-events: none;
+      position: absolute;
+      top: -140px;
+      left: -50px;
+    }
   }
 }
 
 .main {
   background: #222;
   padding: 30px 20px;
-
-  & a {
-    padding: 3px 10px;
-    border: 1px solid #999;
-    border-radius: 3px;
-    margin: 30px auto;
-    width: fit-content;
-    display: block;
-  }
+  max-width: 900px;
+  margin: 0 auto;
 
   &_inner {
     width: 90%;
     margin: 0 auto;
+
+    &:first-child > div:has(button) {
+      display: flex;
+
+      & a,
+      button {
+        padding: 3px 10px;
+        border: 1px solid #999;
+        border-radius: 3px;
+        margin: 30px auto;
+        width: fit-content;
+        display: block;
+      }
+    }
   }
 
   &_genre {
@@ -168,29 +187,6 @@
     }
   }
 }
-
-// @media (min-width: 500px) {
-//   .deco_box {
-//     width: 16%;
-//   }
-
-//   .top_detail_box {
-//     text-align: start;
-//   }
-//   .text_box {
-//     width: 100%;
-//   }
-// }
-
-// @media (min-width: 640px) {
-//   .deco_box {
-//     width: 20%;
-//   }
-//   .main_wrapper {
-//     width: 80%;
-//     font-size: 18px;
-//   }
-// }
 
 @media (min-width: 768px) {
   .main_wrapper {

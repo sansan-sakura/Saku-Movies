@@ -20,3 +20,12 @@ body {
   color: #fff;
   font-family: "Abel";
 }
+
+button,
+a {
+  cursor: pointer;
+}
+
+#root {
+  width: 100vw;
+}

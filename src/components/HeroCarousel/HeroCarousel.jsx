@@ -1,11 +1,11 @@
 import styles from "./HeroCarousel.module.scss";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useMemo, useRef, useState } from "react";
 import { Slider } from "../Slider";
 
 function HeroCarousel({ movies, windowWidth }) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const heroRef = useRef();
-
+  console.log(movies);
   const { currentHeroImageWidth, totalIndex } = useMemo(() => {
     const currentHeroImageWidth = windowWidth * 0.84 + 30;
     const totalIndex = movies.length;
