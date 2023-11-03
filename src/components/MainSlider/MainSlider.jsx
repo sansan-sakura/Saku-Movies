@@ -11,7 +11,7 @@ function MainSlider({ windowWidth, movies, horizontal = true, starCard = false }
   }, [windowWidth]);
 
   const moviesArr = Object.values(movies);
-  console.log(movies);
+
   return (
     <>
       <div className={styles.slider_wrapper}>

@@ -17,7 +17,6 @@ const fetcher = async (path) => {
 };
 
 function useFetchData(obj) {
-  console.log(obj);
   const { data, error, isLoading } = useSWR(obj.path ? `getData/${obj.id}` : null, () =>
     fetcher(obj.path)
   );

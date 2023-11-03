@@ -1,13 +1,16 @@
 import { PlayButton } from "../PlayButton";
 import styles from "./HeroAside.module.scss";
 import useFetchMovie from "../../hooks/useFetchMovie";
+import { useHeroCarousel } from "../../context/HeroCarouselContext";
 
-export const HeroAside = ({ movies }) => {
+export const HeroAside = () => {
+  const { asideMovies, currentIndex } = useHeroCarousel();
+  console.log(asideMovies, currentIndex);
   return (
     <aside className={styles.aside}>
+      <h3>Up Coming</h3>
       <div className={styles.aside_inner}>
-        <h3>Up Coming</h3>
-        {movies.map((movie) => (
+        {asideMovies.map((movie) => (
           <AsideCard key={movie.id} id={movie.id} title={movie.title} path={movie.poster_path} />
         ))}
       </div>
@@ -31,8 +34,16 @@ function AsideCard({ id, title, path }) {
       <div className={styles.left_side}>
         <img src={`https://image.tmdb.org/t/p/w780${path}`} />
       </div>
-      <PlayButton handleClick={togglePlay} key={id} />
       <div className={styles.right_side}>
+        <div className={styles.button}>
+          <PlayButton
+            handleClick={togglePlay}
+            key={id}
+            width="40px"
+            position="3px"
+            display="block"
+          />
+        </div>
         <h5>{title}</h5>
       </div>
     </div>
