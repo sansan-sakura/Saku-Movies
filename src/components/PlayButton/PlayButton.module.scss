@@ -1,8 +1,6 @@
 .controler {
   border: 2px solid #444;
   position: absolute;
-  width: 60px;
-  height: 60px;
   border-radius: 50%;
   bottom: 10px;
   left: 10px;
@@ -15,6 +13,5 @@
   & img {
     filter: invert(1);
     width: 50px;
-    transform: translateX(6px);
   }
 }

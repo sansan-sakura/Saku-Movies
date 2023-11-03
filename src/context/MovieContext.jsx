@@ -1,19 +1,43 @@
-import { createContext, useContext, useReducer } from "react";
+import { createContext, useContext, useEffect, useReducer } from "react";
+import { Error } from "../components/Error";
+import useMultipleUrls from "../hooks/useMultipleUrls";
+import { urlsForHomePage as urls } from "../statics/urls";
 
 const MovieContext = createContext();
 
-const initialState = {
-  movie: "",
-};
-
-function reducer(state, action) {
-  console.log(action, state);
-}
-
 function MovieProvider({ children }) {
-  const [{ movie }, dispatch] = useReducer(reducer, initialState);
+  const { data, error, isLoading } = useMultipleUrls(urls);
 
-  return <MovieContext.Provider value={{ movie }}>{children}</MovieContext.Provider>;
+  if (isLoading) return console.log(isLoading);
+  if (error) return <Error />;
+  const [
+    { results: popularMovies },
+    { results: trendingMovies },
+    { results: upcomingMovies },
+    { results: nowPlayingMovies },
+    { results: topRatedTvs },
+    { results: airingTodayTvs },
+    { results: popularTvs },
+    { results: trendingPeople },
+  ] = data;
+
+  return (
+    <MovieContext.Provider
+      value={{
+        popularMovies,
+        trendingMovies,
+        upcomingMovies,
+        nowPlayingMovies,
+        topRatedTvs,
+        popularTvs,
+        trendingPeople,
+        airingTodayTvs,
+        isLoading,
+      }}
+    >
+      {children}
+    </MovieContext.Provider>
+  );
 }
 
 function useMovie() {

@@ -1,0 +1,45 @@
+@use "../../styles/variables.scss" as *;
+
+.aside {
+  width: 280px;
+  border: #fff solid 0.5px;
+  padding: 4px 8px;
+
+  h3 {
+    font-family: $font-display;
+    font-size: 22px;
+    font-weight: 800;
+    color: $color-primary;
+  }
+}
+
+.aside_inner {
+  display: grid;
+  row-gap: 30px;
+  grid-template-rows: repeat(3, 1fr);
+  align-items: center;
+}
+
+.card {
+  width: 100%;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+
+  img {
+    width: 100px;
+  }
+
+  .right_side {
+    position: relative;
+    height: 150px;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 1;
+  }
+}
+
+.button {
+  transform: translate(-10px, 100px);
+  position: relative;
+}

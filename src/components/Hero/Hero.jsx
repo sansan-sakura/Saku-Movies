@@ -2,11 +2,11 @@ import { HeroAside } from "../HeroAside/HeroAside";
 import HeroCarousel from "../HeroCarousel/HeroCarousel";
 import styles from "./Hero.module.scss";
 
-export const Hero = ({ movies, windowWidth }) => {
+export const Hero = () => {
   return (
-    <>
-      <HeroCarousel movies={movies} windowWidth={windowWidth} />
-      <HeroAside movies={movies} />
-    </>
+    <div className={styles.hero_inner}>
+      <HeroCarousel />
+      <HeroAside />
+    </div>
   );
 };
