@@ -22,9 +22,7 @@ function Home() {
     <>
       <ScrollToTop />
       <div className={styles.container}>
-        <div className={styles.hero_wrapper}>
-          <Hero />
-        </div>
+        <div className={styles.hero_wrapper}>{/* <Hero /> */}</div>
         <div className={styles.inner_main}>
           <Title des="Picked up Popular movies for you">Popular Movies</Title>
           <MainSlider windowWidth={windowWidth} movies={popularMovies} horizontal={false} />

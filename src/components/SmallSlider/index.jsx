@@ -1,0 +1,1 @@
+export { SmallSlider } from "./SmallSlider";

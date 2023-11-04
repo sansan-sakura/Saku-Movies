@@ -1,17 +1,17 @@
 import styles from "./HeroCarousel.module.scss";
 import { Slider } from "../Slider";
 import { useHeroCarousel } from "../../context/HeroCarouselContext";
+import { Loading } from "../Loading";
 
 function HeroCarousel() {
   const { toggleActive, handleToggleActive, heroRef, itemRef, currentIndex, itemWidth, movies } =
     useHeroCarousel();
-  if (!movies) return console.log("not yet");
-  console.log(itemRef);
+  if (!movies) return <Loading />;
   return (
     <>
       <div className={styles.carousel_outer}>
         <Slider currentImageWidth={itemWidth} heroRef={heroRef} onchange={toggleActive}>
-          {movies.map((movie, i) => (
+          {movies.map((movie) => (
             <>
               <li key={movie.id} className={styles.hero_image_wrapper} ref={itemRef}>
                 <div className={styles.hero_img_inner_wrapper}>

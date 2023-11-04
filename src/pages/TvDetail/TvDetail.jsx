@@ -1,41 +1,35 @@
+import styles from "./TvDetail.module.scss";
 import { useParams } from "react-router-dom";
 import useFetchData from "../../hooks/useFetchData";
-import styles from "./Detail.module.scss";
-
-import { LoadingFullPage } from "../../components/LoaingFullPage";
 import { ScrollToTop } from "../../components/ScrollToTop";
-import { Error } from "../../components/Error";
-import { Title } from "../../components/Title";
+import { LoadingFullPage } from "../../components/LoaingFullPage";
 import { DetailTemp } from "../../components/DetailTemp/DetailTemp";
-
-function Detail() {
+import { Error } from "../../components/Error";
+export const TvDetail = () => {
   const { id } = useParams();
-  const { data, error, isLoading } = useFetchData({ path: `movie/${id}`, id: `movie/${id}` });
+  const { data, error, isLoading } = useFetchData({ path: `tv/${id}`, id: `tvs/${id}` });
 
   if (isLoading) return <LoadingFullPage />;
   if (error) return <Error />;
-
   const {
     backdrop_path,
-    belongs_to_collection,
-    budget,
     poster_path,
     genres,
     homepage,
-    imdb_id,
     original_language,
     overview,
     popularity,
     production_companies,
     production_countries,
-    runtime,
+    episode_run_time,
     vote_average,
-    title,
-    release_date,
+    name,
+    first_air_date,
     status,
     tagline,
+    in_production,
   } = data;
-
+  console.log(data);
   return (
     <>
       <ScrollToTop />
@@ -43,41 +37,54 @@ function Detail() {
         <div className={styles.container}>
           <DetailTemp
             backdrop_path={backdrop_path}
-            budget={budget}
             poster_path={poster_path}
             genres={genres}
             homepage={homepage}
-            imdb_id={imdb_id}
             original_language={original_language}
             overview={overview}
             popularity={popularity}
             production_companies={production_companies}
             production_countries={production_countries}
-            runtime={runtime}
+            runtime={episode_run_time}
             vote_average={vote_average}
-            title={title}
-            release_date={release_date}
+            title={name}
+            release_date={first_air_date}
             status={status}
             tagline={tagline}
             id={id}
+            inProduction={in_production}
           />
-          {belongs_to_collection && (
-            <>
-              <div className={styles.collection}>
-                <Title>Check out the Collection</Title>
-                <div className={styles.collection_img}>
-                  <img
-                    src={`https://image.tmdb.org/t/p/original${belongs_to_collection.poster_path}`}
-                  />
-                  <p>{belongs_to_collection.name}</p>
-                </div>
-              </div>
-            </>
-          )}
         </div>
       </section>
     </>
   );
-}
+};
 
-export default Detail;
+// created_by
+// :
+// (2) [{…}, {…}]
+
+// in_production
+// :
+// true
+// languages
+// :
+// ['en']
+// last_air_date
+// :
+// "2021-11-20"
+// last_episode_to_air
+// :
+// {id: 3246870, name: 'The Monster You Created', overview: 'Perilously close to war, the leaders of Piltover a…t a fateful standoff changes both cities forever.', vote_average: 8.667, vote_count: 39, …}
+
+// networks
+// :
+// [{…}]
+
+// number_of_seasons
+// :
+// 2
+
+// seasons
+// :
+// (2) [{…}, {…}]

@@ -1,0 +1,1 @@
+export { DetailTemp } from "./DetailTemp";

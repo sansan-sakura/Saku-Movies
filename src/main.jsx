@@ -10,6 +10,7 @@ import { PageNotFound } from "./pages/PageNotFound";
 import AppLayout from "./pages/AppLayout/AppLayout";
 import { StarDetail } from "./pages/StarDetail";
 import { SearchResult } from "./pages/SearchResult";
+import { TvDetail } from "./pages/TvDetail";
 
 const router = createBrowserRouter([
   {
@@ -24,12 +25,17 @@ const router = createBrowserRouter([
         errorElement: <PageNotFound />,
       },
       {
-        path: "star/:id",
+        path: "tv/:id",
+        element: <TvDetail />,
+        errorElement: <PageNotFound />,
+      },
+      {
+        path: "star/:starId",
         element: <StarDetail />,
         errorElement: <PageNotFound />,
       },
       {
-        path: "search/result/:id",
+        path: "search/result",
         element: <SearchResult />,
         errorElement: <PageNotFound />,
       },
