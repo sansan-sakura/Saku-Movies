@@ -33,21 +33,3 @@
     }
   }
 }
-
-@media (min-width: 768px) {
-  .main_wrapper {
-    width: 70%;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding-top: 20px;
-  }
-}
-@media (min-width: 1024px) {
-  .detail {
-    height: 40vh;
-  }
-
-  .main_wrapper {
-    width: 60%;
-  }
-}

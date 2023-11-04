@@ -5,6 +5,7 @@ import { ScrollToTop } from "../../components/ScrollToTop";
 import { LoadingFullPage } from "../../components/LoaingFullPage";
 import { DetailTemp } from "../../components/DetailTemp/DetailTemp";
 import { Error } from "../../components/Error";
+import { StarCard } from "../../components/StarCard/StarCard";
 export const TvDetail = () => {
   const { id } = useParams();
   const { data, error, isLoading } = useFetchData({ path: `tv/${id}`, id: `tvs/${id}` });
@@ -28,6 +29,7 @@ export const TvDetail = () => {
     status,
     tagline,
     in_production,
+    created_by,
   } = data;
   console.log(data);
   return (
@@ -54,6 +56,9 @@ export const TvDetail = () => {
             id={id}
             inProduction={in_production}
           />
+          {created_by.map((auth) => (
+            <StarCard movie={auth} key={auth.id} isCollection={false} />
+          ))}
         </div>
       </section>
     </>
