@@ -1,0 +1,1 @@
+export { StarDetail } from "./StarDetail";

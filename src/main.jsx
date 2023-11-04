@@ -8,6 +8,8 @@ import { Home } from "./pages/Home";
 import { Detail } from "./pages/Detail";
 import { PageNotFound } from "./pages/PageNotFound";
 import AppLayout from "./pages/AppLayout/AppLayout";
+import { StarDetail } from "./pages/StarDetail";
+import { SearchResult } from "./pages/SearchResult";
 
 const router = createBrowserRouter([
   {
@@ -19,6 +21,16 @@ const router = createBrowserRouter([
       {
         path: "movie/:id",
         element: <Detail />,
+        errorElement: <PageNotFound />,
+      },
+      {
+        path: "star/:id",
+        element: <StarDetail />,
+        errorElement: <PageNotFound />,
+      },
+      {
+        path: "search/result/:id",
+        element: <SearchResult />,
         errorElement: <PageNotFound />,
       },
     ],
