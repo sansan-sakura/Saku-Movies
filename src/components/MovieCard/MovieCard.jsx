@@ -9,7 +9,7 @@ function MovieCard({ movie }) {
   return (
     <>
       {poster && (
-        <Link to={`/movie/${id}`} style={{ textDecoration: "none" }}>
+        <Link to={`/movie/${id}`}>
           <div
             className={styles.card_wrapper}
             onMouseEnter={() => setOnMouse(true)}

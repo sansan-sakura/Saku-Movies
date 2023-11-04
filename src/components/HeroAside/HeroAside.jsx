@@ -4,8 +4,7 @@ import useFetchMovie from "../../hooks/useFetchMovie";
 import { useHeroCarousel } from "../../context/HeroCarouselContext";
 
 export const HeroAside = () => {
-  const { asideMovies, currentIndex } = useHeroCarousel();
-  console.log(asideMovies, currentIndex);
+  const { asideMovies } = useHeroCarousel();
   return (
     <aside className={styles.aside}>
       <h3>Up Coming</h3>

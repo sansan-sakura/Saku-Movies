@@ -1,0 +1,15 @@
+@use "../../styles/mixins.scss" as *;
+.detail_wrapper {
+  min-height: 80vh;
+  color: #fff;
+}
+
+.container {
+  margin: 0 auto;
+  width: 90%;
+
+  @include md {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+}

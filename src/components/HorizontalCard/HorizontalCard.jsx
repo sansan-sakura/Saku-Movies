@@ -40,7 +40,7 @@ function HorizontalCard({ movie }) {
     <>
       {poster && (
         <div className={styles.card_outer}>
-          <Link to={`/movie/${id}`} style={{ textDecoration: "none" }}>
+          <Link to={`/tv/${id}`}>
             <div
               className={styles.card_wrapper}
               onMouseEnter={() => setOnMouse(true)}
@@ -58,7 +58,7 @@ function HorizontalCard({ movie }) {
               <p className={styles.title}>{title ? title : name}</p>
             </div>
             <div>
-              <span>⭐️</span> <span>{vote_average}</span>
+              <span>⭐️</span> <span>{vote_average.toFixed(1)}</span>
             </div>
           </div>
         </div>

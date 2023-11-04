@@ -1,0 +1,16 @@
+.carousel_wrapper {
+  width: 800px;
+  height: 300px;
+  position: relative;
+
+  & li img {
+    min-width: 180px;
+    height: auto;
+  }
+
+  & li {
+    height: auto;
+    width: 180px;
+    scroll-snap-align: start;
+  }
+}

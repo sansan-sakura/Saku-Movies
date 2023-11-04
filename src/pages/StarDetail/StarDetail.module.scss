@@ -1,0 +1,75 @@
+@use "../../styles/variables.scss" as *;
+.star_detail {
+  &_inner {
+    width: clamp(320px, 100%, 900px);
+    margin: 0 auto;
+
+    a {
+      margin-left: 30px;
+      margin-top: 10px;
+    }
+
+    &_upper {
+      width: clamp(320px, 100%, 600px);
+      margin: 0 auto;
+
+      div {
+        width: clamp(180px, 100%, 400px);
+        margin: 0 auto;
+
+        h1 {
+          font-size: 36px;
+          font-weight: 800;
+          text-align: center;
+          color: $color-primary;
+          padding-bottom: 20px;
+        }
+
+        p {
+          display: flex;
+          justify-content: space-between;
+          font-size: 20px;
+          span:last-child {
+            font-weight: 600;
+          }
+
+          &:last-child {
+            padding-bottom: 20px;
+          }
+        }
+      }
+
+      & img {
+        width: 240px;
+        margin: 0 auto;
+      }
+    }
+
+    &_under {
+      width: clamp(320px, 100%, 600px);
+      margin: 0 auto;
+
+      p {
+        font-family: $font-text;
+        padding: 40px 20px;
+        font-size: 16px;
+        line-height: 1.6;
+      }
+    }
+  }
+}
+
+.movies_box {
+  padding-top: 40px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.images {
+  display: flex;
+  gap: 20px;
+
+  img {
+    width: 160px;
+  }
+}

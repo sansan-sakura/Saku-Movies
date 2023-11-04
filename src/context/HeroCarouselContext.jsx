@@ -1,13 +1,20 @@
-import { createContext, useContext, useEffect, useMemo, useRef, useState } from "react";
+import {
+  createContext,
+  useCallback,
+  useContext,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 import { useMovie } from "./MovieContext";
-import useScreenSize from "../hooks/useScreenSize";
 
 const HeroCarouselContext = createContext();
 
 function HeroCarouselProvider({ children }) {
   const { nowPlayingMovies } = useMovie();
-  const movies = nowPlayingMovies.slice(0, 5);
-  const windowWidth = useScreenSize();
+
+  const movies = useMemo(() => nowPlayingMovies.slice(0, 8), []);
 
   const [currentIndex, setCurrentIndex] = useState(0);
   const [itemWidth, setItemWidth] = useState(0);
@@ -15,21 +22,22 @@ function HeroCarouselProvider({ children }) {
   const heroRef = useRef(null);
   const itemRef = useRef(null);
 
-  useEffect(() => {
+  const getWidth = useCallback(() => {
     setItemWidth(itemRef.current.offsetWidth);
   }, [itemRef]);
 
   useEffect(() => {
-    function getWidth() {
-      setItemWidth(itemRef.current.offsetWidth);
-    }
+    getWidth();
+  }, [getWidth]);
+
+  useEffect(() => {
     window.addEventListener("resize", getWidth);
     return () => window.removeEventListener("resize", getWidth);
-  }, [itemRef]);
+  }, [getWidth]);
 
   function toggleActive() {
     setCurrentIndex(
-      heroRef.current !== undefined ? Math.round(heroRef.current.scrollLeft / windowWidth) : null
+      heroRef.current !== null ? Math.round(heroRef.current.scrollLeft / itemWidth) : null
     );
   }
 
@@ -60,31 +68,17 @@ function HeroCarouselProvider({ children }) {
     // };
   }, [currentIndex, itemWidth, movies, heroRef]);
 
-  // aslide +1
   const asideMovies = useMemo(() => {
     if (!movies) return;
-
     const startIndex = currentIndex + 1;
-    const slideNum = 2;
+    const slideLeft = 2;
     const maxIndex = movies.length - 1;
-
-    if (startIndex + slideNum < maxIndex) {
-      console.log("one");
-      return movies.slice(startIndex, 3);
-    } else if (startIndex < maxIndex && Math.abs(maxIndex - currentIndex) < slideNum + 1) {
-      console.log("two", 3 - (maxIndex - startIndex));
-      return [...movies.slice(startIndex, -1), ...movies.slice(0, 3 - maxIndex - startIndex)];
-    } else {
-      return movies.slice(0, 3);
+    if (startIndex + slideLeft <= maxIndex) {
+      return movies.slice(startIndex, startIndex + slideLeft + 1);
+    } else if (startIndex + slideLeft > maxIndex) {
+      const firstMovies = movies.slice(startIndex);
+      return [...firstMovies, ...movies.slice(0, slideLeft + 1 - firstMovies.length)];
     }
-    // if (currentIndex + 3 < movies.length - 1) {
-    //   return movies.slice(currentIndex + 1, 3);
-    // } else if (currentIndex + 3 > movies.length - 1 && currentIndex + 1 < movies.length - 1) {
-    //   const rest = movies.slice(currentIndex, -1);
-    //   return [...rest, ...movies.slice(0, 3 - rest.length)];
-    // } else if (currentIndex === movies.length - 1) {
-    //   return movies(0, 3);
-    // }
   }, [movies, currentIndex]);
 
   return (

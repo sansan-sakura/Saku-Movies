@@ -3,6 +3,7 @@ import styles from "./AppLayout.module.scss";
 import { Header } from "../../components/Header";
 import { Footer } from "../../components/Footer";
 import { HeroCarouselProvider } from "../../context/HeroCarouselContext";
+import { StarDetail } from "../StarDetail";
 
 function AppLayout() {
   return (

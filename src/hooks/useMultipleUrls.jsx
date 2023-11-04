@@ -22,7 +22,7 @@ const fetcher = async (paths) => {
 
 function useMultipleUrls(paths) {
   const { data, error, isLoading } = useSWR("getMultipleData", () => fetcher(paths));
-  console.log(data);
+
   return { data, isLoading, error };
 }
 

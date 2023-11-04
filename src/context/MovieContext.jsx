@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useReducer } from "react";
+import { createContext, useContext } from "react";
 import { Error } from "../components/Error";
 import useMultipleUrls from "../hooks/useMultipleUrls";
 import { urlsForHomePage as urls } from "../statics/urls";
@@ -20,7 +20,7 @@ function MovieProvider({ children }) {
     { results: popularTvs },
     { results: trendingPeople },
   ] = data;
-
+  console.log(data);
   return (
     <MovieContext.Provider
       value={{
