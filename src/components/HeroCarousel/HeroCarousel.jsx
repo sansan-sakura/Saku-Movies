@@ -17,7 +17,6 @@ function HeroCarousel() {
                 <div className={styles.hero_img_inner_wrapper}>
                   <img
                     src={`https://image.tmdb.org/t/p/original${movie.backdrop_path}`}
-                    key={movie.id}
                     className={styles.hero_image}
                   />
                   <div className={styles.inner_image_box}>
@@ -33,7 +32,7 @@ function HeroCarousel() {
                     {Array.from({ length: movies.length }, (_, i) => (
                       <div
                         onClick={() => handleToggleActive(i)}
-                        key={i}
+                        key={movies[i].id}
                         className={styles.pagination}
                         style={{
                           backgroundColor: currentIndex === i ? "#fff" : "",

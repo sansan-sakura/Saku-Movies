@@ -20,7 +20,6 @@ function MovieProvider({ children }) {
     { results: popularTvs },
     { results: trendingPeople },
   ] = data;
-  console.log(data);
   return (
     <MovieContext.Provider
       value={{

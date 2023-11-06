@@ -74,9 +74,9 @@ function HeroCarouselProvider({ children }) {
     const slideLeft = 2;
     const maxIndex = movies.length - 1;
     if (startIndex + slideLeft <= maxIndex) {
-      return movies.slice(startIndex, startIndex + slideLeft + 1);
+      return movies?.slice(startIndex, startIndex + slideLeft + 1);
     } else if (startIndex + slideLeft > maxIndex) {
-      const firstMovies = movies.slice(startIndex);
+      const firstMovies = movies?.slice(startIndex);
       return [...firstMovies, ...movies.slice(0, slideLeft + 1 - firstMovies.length)];
     }
   }, [movies, currentIndex]);
