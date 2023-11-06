@@ -32,6 +32,8 @@ Every project should be deployed somewhere. Be sure to include the link to the d
 
 ## Instructions
 
+https://saku-movie.netlify.app/
+
 <a href="instructions.md">
    See instructions of this project
   </a>
