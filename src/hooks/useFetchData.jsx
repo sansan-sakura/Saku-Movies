@@ -13,10 +13,12 @@ const fetcher = async (path) => {
   const data = await fetch(`https://api.themoviedb.org/3/${path}`, options).then((res) =>
     res.json()
   );
+  console.log(data);
   return data;
 };
 
 function useFetchData(obj) {
+  console.log(obj);
   const { data, error, isLoading } = useSWR(obj.path ? `getData/${obj.id}` : null, () =>
     fetcher(obj.path)
   );

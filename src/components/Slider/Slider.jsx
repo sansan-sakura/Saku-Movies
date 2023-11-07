@@ -3,7 +3,14 @@ import { useRef } from "react";
 
 import styles from "./Slider.module.css";
 
-function Slider({ children, currentImageWidth, heroRef = null, onchange = null }) {
+function Slider({
+  children,
+  currentImageWidth,
+  heroRef = null,
+  onchange = null,
+  btnLeftStyle = null,
+  btnRightStyle = null,
+}) {
   const sliderRef = useRef();
   const carouselRef = heroRef ? heroRef : sliderRef;
 
@@ -17,8 +24,8 @@ function Slider({ children, currentImageWidth, heroRef = null, onchange = null }
 
   return (
     <>
-      <Button type="right-click" handleClick={handleClickToRight} />
-      <Button type="left-click" handleClick={handleClickToLeft} />
+      <Button type="right-click" handleClick={handleClickToRight} buttonStyle={btnRightStyle} />
+      <Button type="left-click" handleClick={handleClickToLeft} buttonStyle={btnLeftStyle} />
       <div className={styles.slider_outer}>
         <ul className={styles.slider_inner} ref={carouselRef} onScroll={onchange}>
           {children}
