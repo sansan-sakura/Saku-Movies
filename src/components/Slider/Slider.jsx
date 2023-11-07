@@ -10,6 +10,7 @@ function Slider({
   onchange = null,
   btnLeftStyle = null,
   btnRightStyle = null,
+  btnType = null,
 }) {
   const sliderRef = useRef();
   const carouselRef = heroRef ? heroRef : sliderRef;
@@ -24,8 +25,18 @@ function Slider({
 
   return (
     <>
-      <Button type="right-click" handleClick={handleClickToRight} buttonStyle={btnRightStyle} />
-      <Button type="left-click" handleClick={handleClickToLeft} buttonStyle={btnLeftStyle} />
+      <Button
+        type="right-click"
+        handleClick={handleClickToRight}
+        buttonStyle={btnRightStyle}
+        btnType={btnType}
+      />
+      <Button
+        type="left-click"
+        handleClick={handleClickToLeft}
+        buttonStyle={btnLeftStyle}
+        btnType={btnType}
+      />
       <div className={styles.slider_outer}>
         <ul className={styles.slider_inner} ref={carouselRef} onScroll={onchange}>
           {children}

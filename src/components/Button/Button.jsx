@@ -1,8 +1,9 @@
 import styles from "./Button.module.scss";
-function Button({ handleClick = null, buttonStyle = {}, type }) {
+function Button({ handleClick = null, buttonStyle = {}, type, btnType = null }) {
+  console.log(btnType);
   return (
     <button
-      className={`${styles.button} ${styles[type]}`}
+      className={`${styles.button} ${styles[type]} ${styles[btnType]}`}
       onClick={handleClick}
       style={buttonStyle}
     >

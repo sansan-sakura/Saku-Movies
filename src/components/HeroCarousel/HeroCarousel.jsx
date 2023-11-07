@@ -10,8 +10,13 @@ function HeroCarousel() {
   return (
     <>
       <div className={styles.carousel_outer}>
-        <Slider currentImageWidth={itemWidth} heroRef={heroRef} onchange={toggleActive}>
-          {movies.map((movie, i) => (
+        <Slider
+          currentImageWidth={itemWidth}
+          heroRef={heroRef}
+          onchange={toggleActive}
+          btnType="herobtn"
+        >
+          {movies.map((movie) => (
             <li key={movie.id} className={styles.hero_image_wrapper} ref={itemRef}>
               <div className={styles.hero_img_inner_wrapper}>
                 <img
