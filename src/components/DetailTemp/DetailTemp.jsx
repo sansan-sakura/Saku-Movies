@@ -7,6 +7,7 @@ import useFetchMovie from "../../hooks/useFetchMovie";
 import { ReadMore } from "../../components/ReadMore";
 
 export const DetailTemp = ({
+  movie = true,
   backdrop_path,
   budget = 0,
   poster_path,
@@ -28,7 +29,7 @@ export const DetailTemp = ({
 }) => {
   const navigate = useNavigate();
   const [toggleVisible, setToggleVisible] = useState(false);
-  const { startVideo, setTriggerMovie, setStartVideo } = useFetchMovie(id);
+  const { startVideo, setTriggerMovie, setStartVideo } = useFetchMovie(id, movie);
   useLayoutEffect(() => {
     if (!title) return;
     document.title = `Movie | ${title}`;
@@ -68,6 +69,7 @@ export const DetailTemp = ({
               display: !startVideo.start ? "flex" : "none",
             }}
           />
+          {startVideo.error && <p className={styles.error_message}>Sorry this is not available</p>}
           <PlayButton
             key={id}
             handleClick={() => setTriggerMovie((prev) => ({ ...prev, trigger: true }))}

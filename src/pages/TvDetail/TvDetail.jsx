@@ -55,10 +55,13 @@ export const TvDetail = () => {
             tagline={tagline}
             id={id}
             inProduction={in_production}
+            movie={false}
           />
-          {created_by.map((auth) => (
-            <StarCard movie={auth} key={auth.id} isCollection={false} />
-          ))}
+          <div className={styles.people_box}>
+            {created_by.map((auth) => (
+              <StarCard movie={auth} key={auth.id} isCollection={false} />
+            ))}
+          </div>
         </div>
       </section>
     </>
