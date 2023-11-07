@@ -1,11 +1,11 @@
 import useFetchData from "./useFetchData";
 import { useEffect, useState } from "react";
 
-const useFetchMovie = (id, movie) => {
+const useFetchMovie = (id, movie = true) => {
   const [startVideo, setStartVideo] = useState({ start: false, url: "", error: false });
   const [triggerMovie, setTriggerMovie] = useState({ trigger: false, id: null });
   const path = `${movie ? "movie" : "tv"}/${id}/videos?language=en-US`;
-
+  console.log(movie, path, triggerMovie);
   const {
     data: videoData,
     isLoading: isVideoLoading,
@@ -15,6 +15,7 @@ const useFetchMovie = (id, movie) => {
     id: `video/${movie ? "movie" : "tv"}/${id}`,
   });
 
+  console.log(videoData);
   useEffect(() => {
     if (!isVideoLoading) setTriggerMovie(false);
     if (videoData && !videoError) {
