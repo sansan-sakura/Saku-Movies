@@ -1,38 +1,15 @@
 import { useState } from "react";
-import useSWR from "swr";
 import styles from "./HorizontalCard.module.scss";
 import { Link } from "react-router-dom";
-
-import { Loading } from "../Loading";
-import { Error } from "../Error";
-
-const options = {
-  method: "GET",
-  headers: {
-    accept: "application/json",
-    Authorization: import.meta.env.VITE_API_KEY, // eslint-disable-line
-  },
-};
-
-const fetcher = async () => {
-  const data = await fetch(
-    "https://api.themoviedb.org/3/genre/movie/list?language=en",
-    options
-  ).then((response) => response.json());
-  return data;
-};
+import { useGenre } from "../../context/GenreContext";
 
 function HorizontalCard({ movie }) {
   const [onMouse, setOnMouse] = useState(false);
+  const { genres } = useGenre();
 
   const { title = null, name = null, backdrop_path: poster, id, vote_average } = movie;
 
-  const { data, error, isLoading } = useSWR("getGenre", fetcher);
-
-  if (isLoading) return <Loading />;
-  if (error) return <Error />;
-
-  const genre = data.genres.find((obj) => {
+  const genre = genres.find((obj) => {
     return obj.id === movie.genre_ids[0];
   });
 
