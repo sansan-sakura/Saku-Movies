@@ -26,6 +26,12 @@ button {
   right: 20px;
   top: 50%;
   transform: translate(-12px, -50%);
+
+  .herobtn {
+    @media (min-width: 450px) {
+      display: none !important;
+    }
+  }
 }
 
 .left-click {
@@ -54,5 +60,13 @@ button {
   }
   .left-click img {
     transform: rotate(180deg);
+  }
+}
+
+.herobtn {
+  display: none;
+
+  @media (min-width: 500px) {
+    display: block;
   }
 }

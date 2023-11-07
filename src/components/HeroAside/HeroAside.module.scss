@@ -9,7 +9,9 @@
     font-family: $font-display;
     font-size: 22px;
     font-weight: 800;
-    padding-bottom: 40px;
+    padding-bottom: 20px;
+    padding-top: 12px;
+    text-align: center;
     color: $color-primary;
   }
 }
@@ -28,19 +30,40 @@
   gap: 10px;
 
   img {
-    width: 100px;
+    width: 180px;
   }
 
   .right_side {
     position: relative;
-    height: 150px;
-    font-weight: 700;
+    height: 110px;
+    font-weight: 600;
     font-size: 18px;
     line-height: 1;
+
+    p {
+      font-size: 14px;
+      margin-bottom: 10px;
+    }
+
+    .date {
+      margin-top: 10px;
+      font-weight: 400;
+    }
   }
 }
 
 .button {
-  transform: translate(-10px, 100px);
-  position: relative;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  position: absolute;
+  top: 110px;
+  right: 10px;
+}
+
+.close_btn {
+  font-size: 40px;
+  position: absolute;
+  top: 4%;
+  right: 10%;
 }

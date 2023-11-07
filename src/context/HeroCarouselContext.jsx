@@ -23,6 +23,7 @@ function HeroCarouselProvider({ children }) {
   const itemRef = useRef(null);
 
   const getWidth = useCallback(() => {
+    if (!itemRef.current) return;
     setItemWidth(itemRef.current.offsetWidth);
   }, [itemRef]);
 

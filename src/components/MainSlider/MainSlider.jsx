@@ -15,7 +15,7 @@ function MainSlider({ windowWidth, movies, horizontal = true, starCard = false }
   return (
     <>
       <div className={styles.slider_wrapper}>
-        <Slider currentImageWidth={currentSliderImageWidth}>
+        <Slider currentImageWidth={currentSliderImageWidth} btnType="herobtn">
           {moviesArr.map((movie) => (
             <li className={styles.scroll_item} key={movie.id}>
               {!starCard && horizontal ? (

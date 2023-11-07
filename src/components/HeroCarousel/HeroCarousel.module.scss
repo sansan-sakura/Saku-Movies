@@ -9,8 +9,11 @@
 
   @include md {
     margin: unset;
-    width: 50vw;
+    width: 70vw;
+    max-width: 900px;
     height: auto;
+    display: flex;
+    align-items: center;
   }
 }
 
@@ -34,27 +37,50 @@
   width: 100%;
   color: #fff;
   position: relative;
+  display: none;
+
+  @media (min-width: 550px) {
+    display: block;
+  }
 
   &_inner {
     width: fit-content;
     position: absolute;
-    bottom: 30px;
-    left: 20px;
+    bottom: 60%;
+    left: 20%;
+
     display: flex;
     align-items: flex-end;
     gap: 20px;
+
+    @include sm {
+      bottom: 60px;
+      left: 100px;
+    }
+
+    @include md {
+    }
   }
 }
 
 .poster_img {
-  width: 140px;
+  width: 120px;
   height: fit-content;
+  border: 0.5px solid #fff;
+
+  @include sm {
+    width: 140px;
+  }
 }
 
 .inner_image_box h2 {
-  font-size: 20px;
+  font-size: 16px;
   line-height: 1.4;
   font-weight: 800;
+
+  @include sm {
+    font-size: 20px;
+  }
 }
 
 .pagination_box {
@@ -77,77 +103,3 @@
   background-color: rgba(153, 153, 153, 0.515);
   cursor: pointer;
 }
-
-// @media (min-width: 400px) {
-//   .hero_image_wrapper {
-//     height: 30vh;
-//     min-height: 360px;
-//   }
-
-//   .pagination_box {
-//     bottom: 2px;
-//   }
-// }
-
-// @media (min-width: 500px) {
-//   .pagination_box {
-//     bottom: 20px;
-//   }
-// }
-
-// @media (min-width: 640px) {
-//   .hero_wrapper {
-//     margin-bottom: 60px;
-//     padding-left: 30px;
-//     padding-right: 30px;
-//   }
-// }
-
-// @media (min-width: 768px) {
-//   .carousel_outer {
-//     margin: 0 auto;
-//     overflow: hidden;
-//     position: relative;
-//     height: 100%;
-//     // width: 90vw;
-//   }
-
-//   .hero_image_wrapper {
-//     height: 40vh;
-//     min-height: 400px;
-//   }
-
-//   .inner_image_box {
-//     display: block;
-//     margin-bottom: 50px;
-//     margin-left: 25px;
-//   }
-
-//   .pagination_box {
-//     bottom: 10px;
-//   }
-// }
-
-// @media (min-width: 1280px) {
-//   .hero_image_wrapper {
-//     height: 50vh;
-//     min-height: 500px;
-//     // width: 84vw;
-//     background-position-y: 30%;
-//     flex: 1 0 100%;
-//   }
-
-//   .inner_image_box {
-//     width: 30%;
-//     padding: 20px;
-//   }
-
-//   .inner_image_box p {
-//     font-size: 16px;
-//     line-height: 1.4;
-//   }
-
-//   .inner_image_box h2 {
-//     font-size: 20px;
-//   }
-// }
