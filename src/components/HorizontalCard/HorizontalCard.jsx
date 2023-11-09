@@ -3,7 +3,7 @@ import styles from "./HorizontalCard.module.scss";
 import { Link } from "react-router-dom";
 import { useGenre } from "../../context/GenreContext";
 
-function HorizontalCard({ movie }) {
+function HorizontalCard({ movie, tv = true }) {
   const [onMouse, setOnMouse] = useState(false);
   const { genres } = useGenre();
 
@@ -17,7 +17,7 @@ function HorizontalCard({ movie }) {
     <>
       {poster && (
         <div className={styles.card_outer}>
-          <Link to={`/tv/${id}`}>
+          <Link to={`/${tv ? "tv" : "movie"}/${id}`}>
             <div
               className={styles.card_wrapper}
               onMouseEnter={() => setOnMouse(true)}

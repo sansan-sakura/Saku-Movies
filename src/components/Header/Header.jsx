@@ -8,7 +8,7 @@ function Header() {
         <h1>SAKU MOVIES</h1>
         <nav className={styles.nav}>
           <NavLink to="/">Home</NavLink>
-          <NavLink to="/">Discover</NavLink>
+          <NavLink to="/discover">Discover</NavLink>
         </nav>
       </div>
     </header>

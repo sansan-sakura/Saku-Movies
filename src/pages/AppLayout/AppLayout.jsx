@@ -5,19 +5,22 @@ import { Footer } from "../../components/Footer";
 import { HeroCarouselProvider } from "../../context/HeroCarouselContext";
 import { GenreProvider } from "../../context/GenreContext";
 import { MovieProvider } from "../../context/MovieContext";
+import { SearchMovieProvider } from "../../context/SearchMovieContext";
 
 function AppLayout() {
   return (
     <MovieProvider>
       <HeroCarouselProvider>
         <GenreProvider>
-          <div className={styles.main_wrapper}>
-            <Header />
-            <main className={styles.main}>
-              <Outlet />
-            </main>
-            <Footer />
-          </div>
+          <SearchMovieProvider>
+            <div className={styles.main_wrapper}>
+              <Header />
+              <main className={styles.main}>
+                <Outlet />
+              </main>
+              <Footer />
+            </div>
+          </SearchMovieProvider>
         </GenreProvider>
       </HeroCarouselProvider>
     </MovieProvider>

@@ -1,0 +1,99 @@
+@use "../../styles/variables.scss" as *;
+@use "../../styles/mixins.scss" as *;
+.discover {
+  padding: 60px 30px;
+  max-width: 1200px;
+
+  &_inner {
+    width: fit-content;
+    margin: 0 auto;
+  }
+}
+
+.form {
+  width: fit-content;
+  margin: 60px auto 0;
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+  margin-left: 4px;
+  margin-right: 4px;
+
+  & > div {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &_upper {
+    & > div {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      width: 100%;
+      max-width: 600px;
+    }
+
+    input {
+      border-bottom-right-radius: 3px;
+      border-top-right-radius: 3px;
+
+      &:focus {
+        outline: solid $color-primary 3px;
+      }
+    }
+
+    select {
+      border-bottom-left-radius: 3px;
+      border-top-left-radius: 3px;
+    }
+
+    input,
+    select {
+      padding: 6px 4px;
+      color: #333;
+      text-align: center;
+      font-size: 20px;
+      font-weight: 800;
+
+      @include sm {
+        padding: 10px 6px;
+      }
+
+      &:focus {
+        outline: solid $color-primary 3px;
+      }
+    }
+
+    p {
+      font-size: 22px;
+      font-weight: 800;
+      color: #bebebe;
+      margin-bottom: 30px;
+    }
+  }
+
+  &_under {
+    select {
+      padding: 10px 6px;
+      color: #333;
+      text-align: center;
+      border-radius: 3px;
+      width: 60%;
+      margin: 0 auto;
+      font-size: 20px;
+      font-weight: 800;
+
+      @include sm {
+        padding: 6px 4px;
+      }
+
+      &:focus {
+        outline: solid $color-primary 4px;
+      }
+    }
+  }
+}
+
+.backBtn {
+  display: block;
+  margin-bottom: 20px;
+}
