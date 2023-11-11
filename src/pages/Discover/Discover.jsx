@@ -1,20 +1,22 @@
-import { useState } from "react";
 import { Title } from "../../components/Title";
 import { useGenre } from "../../context/GenreContext";
 import styles from "./Discover.module.scss";
 import { useSearchMovie } from "../../context/SearchMovieContext";
 import { useNavigate } from "react-router-dom";
-//api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&language=en-US&with_genres=${genreId}`
-// https:
+import { HiSearch } from "react-icons/hi";
 
 export const Discover = () => {
   const { genres } = useGenre();
-  const { setChosenGenre } = useSearchMovie();
+  const { setChosenGenre, setOption, setQuery, option } = useSearchMovie();
   const navigate = useNavigate();
 
   function handleSearchByGenre(e) {
     setChosenGenre(e.target.value);
     return navigate("/search/result");
+  }
+
+  function handleSearchByQuery() {
+    return navigate("/search/query/result");
   }
 
   return (
@@ -27,15 +29,26 @@ export const Discover = () => {
           <div className={styles.form_upper}>
             <Title margleft="0">Discover</Title>
             <p>Movies, TVshows, Celebs, and Key Words</p>
-            <div>
-              <select>
-                <option>Movie</option>
-                <option>TV shows</option>
-                <option>Celebs</option>
-                <option>Key words</option>
-                <option>Celebs</option>
+            <div className={styles.upper_select}>
+              <select
+                className={styles.options}
+                onChange={(e) => setOption(e.target.value)}
+                value={option}
+              >
+                <option value="movie">Movie</option>
+                <option value="tv">TV shows</option>
+                <option value="person">People</option>
+                <option value="keyword">Key words</option>
+                <option value="company">company</option>
               </select>
-              <input type="text" />
+              <input
+                type="text"
+                className={styles.select_input}
+                onChange={(e) => setQuery(e.target.value)}
+              />
+              <button className={styles.button_icon} onClick={handleSearchByQuery}>
+                <HiSearch className={styles.icon} />
+              </button>
             </div>
           </div>
           <div className={styles.form_under}>

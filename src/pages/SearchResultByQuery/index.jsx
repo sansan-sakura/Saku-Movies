@@ -1,0 +1,1 @@
+export { SearchResultByQuery } from "./SearchResultByQuery";

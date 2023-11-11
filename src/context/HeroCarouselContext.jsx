@@ -13,8 +13,8 @@ const HeroCarouselContext = createContext();
 
 function HeroCarouselProvider({ children }) {
   const { nowPlayingMovies } = useMovie();
-  console.log("hero");
-  const movies = useMemo(() => nowPlayingMovies.slice(0, 8), []);
+
+  const movies = useMemo(() => nowPlayingMovies.slice(0, 8), [nowPlayingMovies]);
 
   const [currentIndex, setCurrentIndex] = useState(0);
   const [itemWidth, setItemWidth] = useState(0);

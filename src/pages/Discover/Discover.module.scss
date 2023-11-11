@@ -1,8 +1,9 @@
 @use "../../styles/variables.scss" as *;
 @use "../../styles/mixins.scss" as *;
-.discover {
+.dicover {
   padding: 60px 30px;
   max-width: 1200px;
+  margin: 0 auto;
 
   &_inner {
     width: fit-content;
@@ -27,23 +28,79 @@
   &_upper {
     & > div {
       display: grid;
-      grid-template-columns: 1fr 2fr;
+      grid-template-columns: 1fr 2fr 0.5fr;
       width: 100%;
       max-width: 600px;
+
+      button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #666;
+        border-bottom-right-radius: 3px;
+        border-top-right-radius: 3px;
+
+        &:focus {
+          outline: none;
+          border: orange solid 4px;
+          border-left: none;
+        }
+        .icon {
+          width: 60%;
+          height: 60%;
+        }
+      }
     }
 
     input {
-      border-bottom-right-radius: 3px;
-      border-top-right-radius: 3px;
-
       &:focus {
-        outline: solid $color-primary 3px;
+        outline: none;
+        border: orange solid 4px;
+        border-left: none;
+        border-right: none;
+      }
+      &:has(+ .button_icon:focus) {
+        border: orange solid 4px;
+        border-right: none;
+        border-left: none;
       }
     }
 
     select {
       border-bottom-left-radius: 3px;
       border-top-left-radius: 3px;
+
+      &:focus {
+        outline: none;
+        border: orange solid 4px;
+        border-right: none;
+      }
+
+      &:has(+ .select_input:focus) {
+        border: orange solid 4px;
+        border-right: none;
+      }
+
+      &:has(~ .button_icon:focus) {
+        border: orange solid 4px;
+        border-right: none;
+      }
+    }
+
+    .options:focus + input {
+      border: orange solid 4px;
+      border-left: none;
+      border-right: none;
+    }
+
+    .options:focus ~ button {
+      border: orange solid 4px;
+      border-left: none;
+    }
+
+    input:focus + button {
+      border: orange solid 4px;
+      border-left: none;
     }
 
     input,
@@ -56,10 +113,6 @@
 
       @include sm {
         padding: 10px 6px;
-      }
-
-      &:focus {
-        outline: solid $color-primary 3px;
       }
     }
 
@@ -87,7 +140,8 @@
       }
 
       &:focus {
-        outline: solid $color-primary 4px;
+        outline: none;
+        border: solid $color-primary 4px;
       }
     }
   }

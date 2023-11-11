@@ -6,6 +6,8 @@ import { HeroCarouselProvider } from "../../context/HeroCarouselContext";
 import { GenreProvider } from "../../context/GenreContext";
 import { MovieProvider } from "../../context/MovieContext";
 import { SearchMovieProvider } from "../../context/SearchMovieContext";
+import { Suspense } from "react";
+import { Loading } from "../../components/Loading";
 
 function AppLayout() {
   return (
@@ -13,13 +15,15 @@ function AppLayout() {
       <HeroCarouselProvider>
         <GenreProvider>
           <SearchMovieProvider>
-            <div className={styles.main_wrapper}>
-              <Header />
-              <main className={styles.main}>
-                <Outlet />
-              </main>
-              <Footer />
-            </div>
+            <Suspense fallback={<Loading />}>
+              <div className={styles.main_wrapper}>
+                <Header />
+                <main className={styles.main}>
+                  <Outlet />
+                </main>
+                <Footer />
+              </div>
+            </Suspense>
           </SearchMovieProvider>
         </GenreProvider>
       </HeroCarouselProvider>

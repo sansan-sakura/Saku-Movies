@@ -49,7 +49,7 @@ export const StarDetail = () => {
   const { known_for_department, name, biography, place_of_birth, homepage, birthday, deathday } =
     data;
   const { profiles } = imageData;
-  console.log(profiles);
+
   return (
     <div className={styles.star_detail}>
       <div className={styles.star_detail_inner}>

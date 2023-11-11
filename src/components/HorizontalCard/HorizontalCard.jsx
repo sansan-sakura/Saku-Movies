@@ -10,7 +10,7 @@ function HorizontalCard({ movie, tv = true }) {
   const { title = null, name = null, backdrop_path: poster, id, vote_average } = movie;
 
   const genre = genres.find((obj) => {
-    return obj.id === movie.genre_ids[0];
+    return obj.id === movie.genre_ids?.[0];
   });
 
   return (
@@ -35,7 +35,11 @@ function HorizontalCard({ movie, tv = true }) {
               <p className={styles.title}>{title ? title : name}</p>
             </div>
             <div>
-              <span>⭐️</span> <span>{vote_average.toFixed(1)}</span>
+              {vote_average && (
+                <>
+                  <span>⭐️</span> <span>{vote_average.toFixed(1)}</span>
+                </>
+              )}
             </div>
           </div>
         </div>

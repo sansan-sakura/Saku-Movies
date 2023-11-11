@@ -1,0 +1,41 @@
+@use "../../styles/variables.scss" as *;
+@use "../../styles/mixins.scss" as *;
+
+.result {
+  margin: 0 auto;
+  max-width: 1600px;
+  width: 100%;
+  padding: 60px 10px;
+
+  &_inner {
+    width: fit-content;
+    margin: 0 auto;
+
+    &_movies {
+      margin: 0 auto;
+      width: fit-content;
+      display: grid;
+      grid-template-columns: 1fr;
+      row-gap: 40px;
+
+      @media (min-width: 500px) {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      @media (min-width: 920px) {
+        grid-template-columns: repeat(3, 1fr);
+      }
+      @media (min-width: 1230px) {
+        grid-template-columns: repeat(4, 1fr);
+      }
+      @media (min-width: 1500px) {
+        grid-template-columns: repeat(5, 1fr);
+      }
+    }
+  }
+}
+
+.backBtn {
+  display: block;
+  margin-bottom: 20px;
+}
