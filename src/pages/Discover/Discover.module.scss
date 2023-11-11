@@ -1,0 +1,153 @@
+@use "../../styles/variables.scss" as *;
+@use "../../styles/mixins.scss" as *;
+.dicover {
+  padding: 60px 30px;
+  max-width: 1200px;
+  margin: 0 auto;
+
+  &_inner {
+    width: fit-content;
+    margin: 0 auto;
+  }
+}
+
+.form {
+  width: fit-content;
+  margin: 60px auto 0;
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+  margin-left: 4px;
+  margin-right: 4px;
+
+  & > div {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &_upper {
+    & > div {
+      display: grid;
+      grid-template-columns: 1fr 2fr 0.5fr;
+      width: 100%;
+      max-width: 600px;
+
+      button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #666;
+        border-bottom-right-radius: 3px;
+        border-top-right-radius: 3px;
+
+        &:focus {
+          outline: none;
+          border: orange solid 4px;
+          border-left: none;
+        }
+        .icon {
+          width: 60%;
+          height: 60%;
+        }
+      }
+    }
+
+    input {
+      &:focus {
+        outline: none;
+        border: orange solid 4px;
+        border-left: none;
+        border-right: none;
+      }
+      &:has(+ .button_icon:focus) {
+        border: orange solid 4px;
+        border-right: none;
+        border-left: none;
+      }
+    }
+
+    select {
+      border-bottom-left-radius: 3px;
+      border-top-left-radius: 3px;
+
+      &:focus {
+        outline: none;
+        border: orange solid 4px;
+        border-right: none;
+      }
+
+      &:has(+ .select_input:focus) {
+        border: orange solid 4px;
+        border-right: none;
+      }
+
+      &:has(~ .button_icon:focus) {
+        border: orange solid 4px;
+        border-right: none;
+      }
+    }
+
+    .options:focus + input {
+      border: orange solid 4px;
+      border-left: none;
+      border-right: none;
+    }
+
+    .options:focus ~ button {
+      border: orange solid 4px;
+      border-left: none;
+    }
+
+    input:focus + button {
+      border: orange solid 4px;
+      border-left: none;
+    }
+
+    input,
+    select {
+      padding: 6px 4px;
+      color: #333;
+      text-align: center;
+      font-size: 20px;
+      font-weight: 800;
+
+      @include sm {
+        padding: 10px 6px;
+      }
+    }
+
+    p {
+      font-size: 22px;
+      font-weight: 800;
+      color: #bebebe;
+      margin-bottom: 30px;
+    }
+  }
+
+  &_under {
+    select {
+      padding: 10px 6px;
+      color: #333;
+      text-align: center;
+      border-radius: 3px;
+      width: 60%;
+      margin: 0 auto;
+      font-size: 20px;
+      font-weight: 800;
+
+      @include sm {
+        padding: 6px 4px;
+      }
+
+      &:focus {
+        outline: none;
+        border: solid $color-primary 4px;
+      }
+    }
+  }
+}
+
+.backBtn {
+  display: block;
+  margin-bottom: 20px;
+}

@@ -71,7 +71,6 @@ function AsideVideoPlayer({ id, startVideo, setStartVideo }) {
         className={styles.close_btn}
         onClick={() => setStartVideo((prev) => ({ ...prev, start: false }))}
       >
-        {" "}
         &#x2715;
       </button>
       <div

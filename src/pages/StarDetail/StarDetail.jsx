@@ -84,10 +84,10 @@ export const StarDetail = () => {
             <SmallSlider images={profiles} itemRef={imageRef} totalWidth={itemWidth} />
           ) : (
             <div className={styles.images}>
-              {profiles.map((img) => (
+              {profiles.map((img, index) => (
                 <img
                   src={`https://image.tmdb.org/t/p/original${img.file_path}`}
-                  key={img.profile_path}
+                  key={`${img.profile_path}s-${index}`}
                 />
               ))}
             </div>
@@ -98,7 +98,7 @@ export const StarDetail = () => {
         <div className={styles.movies_box}>
           {data &&
             known_for &&
-            known_for.map((movie) => <MovieSmallCard movie={movie} key={movie.id} />)}
+            known_for.map((movie) => <MovieSmallCard movie={movie} key={movie.imdb_id} />)}
         </div>
         <p>{biography}</p>
 

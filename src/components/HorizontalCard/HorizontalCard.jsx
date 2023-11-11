@@ -1,46 +1,23 @@
 import { useState } from "react";
-import useSWR from "swr";
 import styles from "./HorizontalCard.module.scss";
 import { Link } from "react-router-dom";
+import { useGenre } from "../../context/GenreContext";
 
-import { Loading } from "../Loading";
-import { Error } from "../Error";
-
-const options = {
-  method: "GET",
-  headers: {
-    accept: "application/json",
-    Authorization: import.meta.env.VITE_API_KEY, // eslint-disable-line
-  },
-};
-
-const fetcher = async () => {
-  const data = await fetch(
-    "https://api.themoviedb.org/3/genre/movie/list?language=en",
-    options
-  ).then((response) => response.json());
-  return data;
-};
-
-function HorizontalCard({ movie }) {
+function HorizontalCard({ movie, tv = true }) {
   const [onMouse, setOnMouse] = useState(false);
+  const { genres } = useGenre();
 
   const { title = null, name = null, backdrop_path: poster, id, vote_average } = movie;
 
-  const { data, error, isLoading } = useSWR("getGenre", fetcher);
-
-  if (isLoading) return <Loading />;
-  if (error) return <Error />;
-
-  const genre = data.genres.find((obj) => {
-    return obj.id === movie.genre_ids[0];
+  const genre = genres.find((obj) => {
+    return obj.id === movie.genre_ids?.[0];
   });
 
   return (
     <>
       {poster && (
         <div className={styles.card_outer}>
-          <Link to={`/tv/${id}`}>
+          <Link to={`/${tv ? "tv" : "movie"}/${id}`}>
             <div
               className={styles.card_wrapper}
               onMouseEnter={() => setOnMouse(true)}
@@ -58,7 +35,11 @@ function HorizontalCard({ movie }) {
               <p className={styles.title}>{title ? title : name}</p>
             </div>
             <div>
-              <span>⭐️</span> <span>{vote_average.toFixed(1)}</span>
+              {vote_average && (
+                <>
+                  <span>⭐️</span> <span>{vote_average.toFixed(1)}</span>
+                </>
+              )}
             </div>
           </div>
         </div>

@@ -3,7 +3,6 @@ import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./styles/index.scss";
 
-import { MovieProvider } from "./context/MovieContext";
 import { Home } from "./pages/Home";
 import { Detail } from "./pages/Detail";
 import { PageNotFound } from "./pages/PageNotFound";
@@ -11,6 +10,8 @@ import AppLayout from "./pages/AppLayout/AppLayout";
 import { StarDetail } from "./pages/StarDetail";
 import { SearchResult } from "./pages/SearchResult";
 import { TvDetail } from "./pages/TvDetail";
+import { Discover } from "./pages/Discover";
+import { SearchResultByQuery } from "./pages/SearchResultByQuery";
 
 const router = createBrowserRouter([
   {
@@ -40,14 +41,22 @@ const router = createBrowserRouter([
         element: <SearchResult />,
         errorElement: <PageNotFound />,
       },
+      {
+        path: "search/query/result",
+        element: <SearchResultByQuery />,
+        errorElement: <PageNotFound />,
+      },
+      {
+        path: "/discover",
+        element: <Discover />,
+        errorElement: <PageNotFound />,
+      },
     ],
   },
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <MovieProvider>
-      <RouterProvider router={router} />
-    </MovieProvider>
+    <RouterProvider router={router} />
   </React.StrictMode>
 );
