@@ -9,11 +9,10 @@ const options = {
 };
 
 const fetcher = async (path) => {
-  console.log(path);
   const data = await fetch(`https://api.themoviedb.org/3/${path}`, options).then((res) =>
     res.json()
   );
-  console.log(data);
+
   return data;
 };
 

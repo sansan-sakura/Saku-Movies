@@ -11,7 +11,7 @@ import { useMovie } from "./MovieContext";
 
 const HeroCarouselContext = createContext();
 
-function HeroCarouselProvider({ children }) {
+function HeroCarouselProvider({ children, itemRef }) {
   const { nowPlayingMovies } = useMovie();
 
   const movies = useMemo(() => nowPlayingMovies.slice(0, 8), [nowPlayingMovies]);
@@ -20,10 +20,9 @@ function HeroCarouselProvider({ children }) {
   const [itemWidth, setItemWidth] = useState(0);
 
   const heroRef = useRef(null);
-  const itemRef = useRef(null);
-
+  console.log(itemRef);
   const getWidth = useCallback(() => {
-    if (!itemRef.current) return;
+    if (!itemRef) return;
     setItemWidth(itemRef.current.offsetWidth);
   }, [itemRef]);
 
@@ -88,7 +87,7 @@ function HeroCarouselProvider({ children }) {
         toggleActive,
         handleToggleActive,
         heroRef,
-        itemRef,
+
         currentIndex,
         itemWidth,
         movies,

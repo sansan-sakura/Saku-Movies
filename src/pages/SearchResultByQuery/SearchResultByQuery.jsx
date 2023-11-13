@@ -1,7 +1,7 @@
 import styles from "./SearchResultByQuery.module.scss";
 import { useNavigate } from "react-router-dom";
 import HorizontalCard from "../../components/HorizontalCard/HorizontalCard";
-import { Loading } from "../../components/Loading";
+import { LoadingFullPage } from "../../components/LoaingFullPage";
 import { Title } from "../../components/Title";
 import { useGenre } from "../../context/GenreContext";
 import { useSearchMovie } from "../../context/SearchMovieContext";
@@ -13,7 +13,7 @@ export const SearchResultByQuery = () => {
   const { genres } = useGenre();
   const navigate = useNavigate();
   if (movieByQueryError) return null;
-  if (movieByQueryLoading) return <Loading />;
+  if (movieByQueryLoading) return <LoadingFullPage />;
   //   const genreName = genres.find((el) => el.id === Number(chosenGenre)).name;
   console.log(movieByQueryData);
   return (

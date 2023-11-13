@@ -2,10 +2,13 @@ import styles from "./HeroCarousel.module.scss";
 import { Slider } from "../Slider";
 import { useHeroCarousel } from "../../context/HeroCarouselContext";
 import { Loading } from "../Loading";
+import { useRef } from "react";
 
 function HeroCarousel() {
-  const { toggleActive, handleToggleActive, heroRef, itemRef, currentIndex, itemWidth, movies } =
-    useHeroCarousel();
+  const itemRef = useRef(null);
+  const { toggleActive, handleToggleActive, heroRef, currentIndex, itemWidth, movies } =
+    useHeroCarousel({ itemRef });
+  console.log(itemRef);
   if (!movies) return <Loading />;
   return (
     <>

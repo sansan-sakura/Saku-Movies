@@ -1,7 +1,6 @@
 import { useLayoutEffect } from "react";
 
 export const useTitle = ({ title }) => {
-  console.log(title);
   useLayoutEffect(() => {
     if (!title) return;
     document.title = `Movie | ${title}`;

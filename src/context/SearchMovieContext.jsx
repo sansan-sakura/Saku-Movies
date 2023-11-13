@@ -11,13 +11,13 @@ const SearchMovieProvider = ({ children }) => {
   }, [chosenGenre]);
 
   const qurrySearchPath = useMemo(() => {
-    console.log(option);
     return option && query
       ? option === "company"
         ? `search/company?query=${query}&page=1`
         : `search/${option}?language=en-US&query=${query}&include_adult=false&page=1`
       : null;
   }, [option, query]);
+
   console.log(qurrySearchPath);
   const {
     data: movieByGenreData,
