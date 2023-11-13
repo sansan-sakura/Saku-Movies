@@ -1,5 +1,6 @@
 .slider_outer {
   width: 100%;
+  max-width: 1900px;
   margin: 0 auto;
   overflow: hidden;
   z-index: -1;
@@ -7,6 +8,7 @@
 
 .slider_inner {
   width: 100%;
+  max-width: 1900px;
   display: flex;
   gap: 10px;
   scroll-behavior: smooth;

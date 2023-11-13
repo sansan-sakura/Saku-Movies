@@ -6,6 +6,7 @@
   position: relative;
   height: 100%;
   width: 100%;
+  max-width: 1900px;
 
   @include md {
     margin: unset;
@@ -60,6 +61,31 @@
 
     @include md {
     }
+
+    &_des {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      backdrop-filter: blur(10px);
+      padding: 10px;
+      border-radius: 2px;
+      background-color: rgb(33, 33, 33, 0.3);
+    }
+  }
+
+  h2 {
+    font-size: 16px;
+    line-height: 1.4;
+    font-weight: 800;
+
+    @include sm {
+      font-size: 20px;
+    }
+  }
+
+  p {
+    width: 200px;
+    font-weight: 600;
   }
 }
 
@@ -70,16 +96,6 @@
 
   @include sm {
     width: 140px;
-  }
-}
-
-.inner_image_box h2 {
-  font-size: 16px;
-  line-height: 1.4;
-  font-weight: 800;
-
-  @include sm {
-    font-size: 20px;
   }
 }
 

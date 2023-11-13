@@ -1,26 +1,28 @@
 import { Button } from "../Button";
-import { useRef } from "react";
+import { useRef, useEffect } from "react";
 
-import styles from "./Slider.module.css";
+import styles from "./Slider.module.scss";
 
 function Slider({
   children,
   currentImageWidth,
-  heroRef = null,
+  onHeroRef = null,
   onchange = null,
   btnLeftStyle = null,
   btnRightStyle = null,
   btnType = null,
 }) {
   const sliderRef = useRef();
-  const carouselRef = heroRef ? heroRef : sliderRef;
+  useEffect(() => {
+    if (onHeroRef) onHeroRef(sliderRef);
+  }, [onHeroRef, sliderRef]);
 
   function handleClickToLeft() {
-    carouselRef.current.scrollLeft -= currentImageWidth;
+    sliderRef.current.scrollLeft -= currentImageWidth;
   }
 
   function handleClickToRight() {
-    carouselRef.current.scrollLeft += currentImageWidth;
+    sliderRef.current.scrollLeft += currentImageWidth;
   }
 
   return (
@@ -38,7 +40,7 @@ function Slider({
         btnType={btnType}
       />
       <div className={styles.slider_outer}>
-        <ul className={styles.slider_inner} ref={carouselRef} onScroll={onchange}>
+        <ul className={styles.slider_inner} ref={sliderRef} onScroll={onchange}>
           {children}
         </ul>
       </div>
