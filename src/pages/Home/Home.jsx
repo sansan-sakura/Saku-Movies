@@ -26,19 +26,31 @@ function Home() {
           <Hero />
         </div>
         <div className={styles.inner_main}>
-          <Title des="Picked up Popular movies for you">Popular Movies</Title>
-          <MainSlider windowWidth={windowWidth} movies={popularMovies} horizontal={false} />
-          <Title des="Now in Trend">Trending Movies</Title>
-          <MainSlider windowWidth={windowWidth} movies={trendingMovies} horizontal={false} />
-          <Title des="Top Rated by our users">Top Rated TV shows</Title>
-          <MainSlider windowWidth={windowWidth} movies={topRatedTvs} />
-          <Heading>Explore upcoming movies</Heading>
-          <Title des="Discover new movies">UP coming Movies</Title>
-          <MainSlider windowWidth={windowWidth} movies={upcomingMovies} horizontal={false} />
-          <Title>Airing Today's TVs</Title>
-          <MainSlider windowWidth={windowWidth} movies={airingTodayTvs} />
-          <Title>People</Title>
-          <MainSlider windowWidth={windowWidth} movies={trendingPeople} starCard={true} />
+          <div>
+            <Title des="Picked up Popular movies for you">Popular Movies</Title>
+            <MainSlider windowWidth={windowWidth} movies={popularMovies} horizontal={false} />
+          </div>
+          <div>
+            <Title des="Now in Trend">Trending Movies</Title>
+            <MainSlider windowWidth={windowWidth} movies={trendingMovies} horizontal={false} />
+          </div>
+          <div>
+            <Title des="Top Rated by our users">Top Rated TV shows</Title>
+            <MainSlider windowWidth={windowWidth} movies={topRatedTvs} />
+          </div>
+          <div>
+            <Heading>Explore upcoming movies</Heading>
+            <Title des="Discover new movies">UP coming Movies</Title>
+            <MainSlider windowWidth={windowWidth} movies={upcomingMovies} horizontal={false} />
+          </div>
+          <div>
+            <Title>Airing Today's TVs</Title>
+            <MainSlider windowWidth={windowWidth} movies={airingTodayTvs} />
+          </div>
+          <div>
+            <Title>People</Title>
+            <MainSlider windowWidth={windowWidth} movies={trendingPeople} starCard={true} />
+          </div>
         </div>
       </div>
     </>

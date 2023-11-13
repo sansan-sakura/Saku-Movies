@@ -67,32 +67,3 @@ export const TvDetail = () => {
     </>
   );
 };
-
-// created_by
-// :
-// (2) [{…}, {…}]
-
-// in_production
-// :
-// true
-// languages
-// :
-// ['en']
-// last_air_date
-// :
-// "2021-11-20"
-// last_episode_to_air
-// :
-// {id: 3246870, name: 'The Monster You Created', overview: 'Perilously close to war, the leaders of Piltover a…t a fateful standoff changes both cities forever.', vote_average: 8.667, vote_count: 39, …}
-
-// networks
-// :
-// [{…}]
-
-// number_of_seasons
-// :
-// 2
-
-// seasons
-// :
-// (2) [{…}, {…}]

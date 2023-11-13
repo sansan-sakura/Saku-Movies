@@ -1,72 +1,14 @@
-import {
-  createContext,
-  useCallback,
-  useContext,
-  useEffect,
-  useMemo,
-  useRef,
-  useState,
-} from "react";
+import { createContext, useContext, useMemo, useState } from "react";
 import { useMovie } from "./MovieContext";
 
 const HeroCarouselContext = createContext();
 
-function HeroCarouselProvider({ children, itemRef }) {
+function HeroCarouselProvider({ children }) {
   const { nowPlayingMovies } = useMovie();
 
   const movies = useMemo(() => nowPlayingMovies.slice(0, 8), [nowPlayingMovies]);
 
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [itemWidth, setItemWidth] = useState(0);
-
-  const heroRef = useRef(null);
-  console.log(itemRef);
-  const getWidth = useCallback(() => {
-    if (!itemRef) return;
-    setItemWidth(itemRef.current.offsetWidth);
-  }, [itemRef]);
-
-  useEffect(() => {
-    getWidth();
-  }, [getWidth]);
-
-  useEffect(() => {
-    window.addEventListener("resize", getWidth);
-    return () => window.removeEventListener("resize", getWidth);
-  }, [getWidth]);
-
-  function toggleActive() {
-    setCurrentIndex(
-      heroRef.current !== null ? Math.round(heroRef.current.scrollLeft / itemWidth) : null
-    );
-  }
-
-  function handleToggleActive(index) {
-    if (!heroRef) return;
-    setCurrentIndex(index);
-    if (index > currentIndex) {
-      heroRef.current.scrollLeft += itemWidth * (index - currentIndex);
-    } else if (index <= currentIndex) {
-      heroRef.current.scrollLeft -= itemWidth * (currentIndex - index);
-    }
-  }
-
-  useEffect(() => {
-    function changeSlide() {
-      if (currentIndex < movies.length - 1) {
-        setCurrentIndex((prevIndex) => prevIndex + 1);
-        heroRef.current.scrollLeft += itemWidth;
-      } else if (currentIndex === movies.length - 1) {
-        heroRef.current.scrollLeft -= itemWidth * movies.length;
-        setCurrentIndex(0);
-      }
-    }
-    if (!heroRef) return;
-    // const interval = setInterval(changeSlide, 5000);
-    // return () => {
-    //   clearInterval(interval);
-    // };
-  }, [currentIndex, itemWidth, movies, heroRef]);
 
   const asideMovies = useMemo(() => {
     if (!movies) return;
@@ -84,12 +26,8 @@ function HeroCarouselProvider({ children, itemRef }) {
   return (
     <HeroCarouselContext.Provider
       value={{
-        toggleActive,
-        handleToggleActive,
-        heroRef,
-
         currentIndex,
-        itemWidth,
+        setCurrentIndex,
         movies,
         asideMovies,
       }}
