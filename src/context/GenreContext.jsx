@@ -1,8 +1,7 @@
 import { createContext, useContext } from "react";
-
-// import { Loading } from "../Loading";
-// import { Error } from "../Error";
+import { Error } from "../components/Error";
 import useFetchData from "../hooks/useFetchData";
+import { LoadingFullPage } from "../components/LoaingFullPage";
 
 const GenreContext = createContext();
 
@@ -12,11 +11,11 @@ const GenreProvider = ({ children }) => {
     path: "/genre/movie/list?language=en",
   });
 
-  if (isLoading) return <p>loading</p>;
-  if (error) return <p>error</p>;
+  if (isLoading) return <LoadingFullPage />;
+  if (error) return <Error />;
 
   const genres = data.genres;
-  console.log(genres);
+
   return <GenreContext.Provider value={{ genres }}>{children}</GenreContext.Provider>;
 };
 

@@ -1,4 +1,5 @@
 import styles from "./Button.module.scss";
+
 function Button({ handleClick = null, buttonStyle = {}, type, btnType = null }) {
   return (
     <button

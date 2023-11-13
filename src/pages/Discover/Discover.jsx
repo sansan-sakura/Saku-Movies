@@ -28,7 +28,7 @@ export const Discover = () => {
         <div className={styles.form}>
           <div className={styles.form_upper}>
             <Title margleft="0">Discover</Title>
-            <p>Movies, TVshows, Celebs, and Key Words</p>
+            <p>Movie, TVshow,Person, and Company</p>
             <div className={styles.upper_select}>
               <select
                 className={styles.options}
@@ -38,7 +38,6 @@ export const Discover = () => {
                 <option value="movie">Movie</option>
                 <option value="tv">TV shows</option>
                 <option value="person">People</option>
-                <option value="keyword">Key words</option>
                 <option value="company">company</option>
               </select>
               <input

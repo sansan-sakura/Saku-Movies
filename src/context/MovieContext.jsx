@@ -2,14 +2,16 @@ import { createContext, useContext } from "react";
 import { Error } from "../components/Error";
 import useMultipleUrls from "../hooks/useMultipleUrls";
 import { urlsForHomePage as urls } from "../statics/urls";
+import { LoadingFullPage } from "../components/LoaingFullPage";
 
 const MovieContext = createContext();
 
 function MovieProvider({ children }) {
   const { data, error, isLoading } = useMultipleUrls(urls);
 
-  if (isLoading) return console.log(isLoading);
+  if (isLoading) return <LoadingFullPage />;
   if (error) return <Error />;
+
   const [
     { results: popularMovies },
     { results: trendingMovies },

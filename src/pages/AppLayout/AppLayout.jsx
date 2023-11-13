@@ -7,7 +7,7 @@ import { GenreProvider } from "../../context/GenreContext";
 import { MovieProvider } from "../../context/MovieContext";
 import { SearchMovieProvider } from "../../context/SearchMovieContext";
 import { Suspense } from "react";
-import { Loading } from "../../components/Loading";
+import { LoadingFullPage } from "../../components/LoaingFullPage";
 
 function AppLayout() {
   return (
@@ -15,7 +15,7 @@ function AppLayout() {
       <HeroCarouselProvider>
         <GenreProvider>
           <SearchMovieProvider>
-            <Suspense fallback={<Loading />}>
+            <Suspense fallback={<LoadingFullPage />}>
               <div className={styles.main_wrapper}>
                 <Header />
                 <main className={styles.main}>

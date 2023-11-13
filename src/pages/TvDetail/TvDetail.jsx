@@ -31,7 +31,7 @@ export const TvDetail = () => {
     in_production,
     created_by,
   } = data;
-  console.log(data);
+
   return (
     <>
       <ScrollToTop />

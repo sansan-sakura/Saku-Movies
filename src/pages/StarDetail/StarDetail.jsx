@@ -6,6 +6,7 @@ import { ReadMore } from "../../components/ReadMore";
 import { useMovie } from "../../context/MovieContext";
 import { MovieSmallCard } from "../../components/MovieSmallCard";
 import { SmallSlider } from "../../components/SmallSlider/SmallSlider";
+import { LoadingFullPage } from "../../components/LoaingFullPage";
 
 export const StarDetail = () => {
   const navigate = useNavigate();
@@ -42,7 +43,7 @@ export const StarDetail = () => {
     return known_for;
   }, [data, trendingPeople]);
 
-  if (isLoading || imageIsLoading) return <p>Loading</p>;
+  if (isLoading || imageIsLoading) return <LoadingFullPage />;
   if (error) return <p>error</p>;
   if (data?.success === false) return <p>error</p>;
 
