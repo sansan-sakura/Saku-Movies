@@ -7,9 +7,9 @@
 .container {
   margin: 0 auto;
   width: 90%;
+  max-width: 800px;
 
   @include md {
-    max-width: 900px;
     margin: 0 auto;
   }
 }
