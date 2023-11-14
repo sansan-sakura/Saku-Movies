@@ -5,26 +5,14 @@
 </h1>
 
 # Movie Site Project
+I created this app as my project and to practice React. I tried to implement as much information as possible, so it became bigger than I initially imagined. 
+Moreover, I wanted to make a light performance, so I used SWR and Promis.all. Moreover, as I wanted to practice more complicated applications, I tried to make as many hooks and contexts. 
 
-## Getting Started with the Project
-
-### Dependency Installation & Startup Development Server
-
-Once cloned, navigate to the project's root directory and this project uses npm (Node Package Manager) to manage its dependencies.
-
-The command below is a combination of installing dependencies, opening up the project on VS Code and it will run a development server on your terminal.
-
-```bash
-npm i && code . && npm run dev
-```
+Usd tech: Context API, React router, React, SCSS, SWR.
 
 ### The Problem
 
-Describe how you approached to problem, and what tools and techniques you used to solve it. How did you plan? What technologies did you use? If you had more time, what would be next?
-
-### View it live
-
-Every project should be deployed somewhere. Be sure to include the link to the deployed project so that the viewer can click around and see what it's all about.
+I encountered so many problems while I was building this app, as this is my first time making such as big application. It took me about a month to finish this, but I still have some more things to do. I need to do more refactoring and make it organized and some more things to implement.  The most I struggled with was making a reusable carousel and in general, making reusable components. What I have done here is not an ideal and clean way, so in the future, when I master more React, I should come back and change it more reusable, like using compressed components and such. Therefore, you will see reputations with this application! ( Some pages share a similar structure, but I had no way of separating it, as I needed to fetch different data when it is mounted by react-router. ) Therefore, it was a great learning chance for me to think about how to make and use react components in an efficient and better way. (especially, when you think about performance, and when it is mounted and rendered again, and how to memo)  So I am not happy about my code, but the experience. I will keep learning to make it better! 
 
 ## Instructions
 
