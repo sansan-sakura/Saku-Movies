@@ -1,5 +1,5 @@
 import { useNavigate, useParams } from "react-router-dom";
-import { useRef, useCallback, useState, useEffect, useMemo } from "react";
+import { useMemo } from "react";
 import styles from "./StarDetail.module.scss";
 import useFetchData from "../../hooks/useFetchData";
 import { ReadMore } from "../../components/ReadMore";
@@ -7,17 +7,11 @@ import { useMovie } from "../../context/MovieContext";
 import { MovieSmallCard } from "../../components/MovieSmallCard";
 import { SmallSlider } from "../../components/SmallSlider/SmallSlider";
 import { LoadingFullPage } from "../../components/LoaingFullPage";
+import { ScrollToTop } from "../../components/ScrollToTop";
 
 export const StarDetail = () => {
   const navigate = useNavigate();
   const { starId } = useParams();
-  const imageRef = useRef(null);
-  const [itemWidth, setItemWidth] = useState(0);
-
-  const getWidth = useCallback(() => {
-    if (!imageRef.current) return;
-    setItemWidth(imageRef.current.offsetWidth);
-  }, [imageRef]);
 
   const { data, error, isLoading } = useFetchData({
     path: `person/${starId}?language=en-US`,
@@ -29,9 +23,6 @@ export const StarDetail = () => {
     id: `star/images/${starId}`,
   });
 
-  useEffect(() => {
-    getWidth();
-  }, [imageRef, getWidth, imageData]);
   const { trendingPeople } = useMovie();
 
   const known_for = useMemo(() => {
@@ -52,59 +43,62 @@ export const StarDetail = () => {
   const { profiles } = imageData;
 
   return (
-    <div className={styles.star_detail}>
-      <div className={styles.star_detail_inner}>
-        <a onClick={() => navigate(-1)}>&#x3c; BACK</a>
-        <div className={styles.star_detail_inner_upper}>
-          <div>
-            <h1>{name}</h1>
-            {birthday && (
+    <>
+      <ScrollToTop />
+      <div className={styles.star_detail}>
+        <div className={styles.star_detail_inner}>
+          <a onClick={() => navigate(-1)}>&#x3c; BACK</a>
+          <div className={styles.star_detail_inner_upper}>
+            <div>
+              <h1>{name}</h1>
+              {birthday && (
+                <p>
+                  <span>Birth Day</span>
+                  <span>{birthday}</span>
+                </p>
+              )}
+              {deathday && (
+                <p>
+                  <span>Death Day</span>
+                  <span>{deathday}</span>
+                </p>
+              )}
+              {place_of_birth && (
+                <p>
+                  <span>Place of Birth</span>
+                  <span>{place_of_birth}</span>
+                </p>
+              )}
               <p>
-                <span>Birth Day</span>
-                <span>{birthday}</span>
+                <span>Know for</span>
+                <span>{known_for_department}</span>
               </p>
-            )}
-            {deathday && (
-              <p>
-                <span>Death Day</span>
-                <span>{deathday}</span>
-              </p>
-            )}
-            {place_of_birth && (
-              <p>
-                <span>Place of Birth</span>
-                <span>{place_of_birth}</span>
-              </p>
-            )}
-            <p>
-              <span>Know for</span>
-              <span>{known_for_department}</span>
-            </p>
-          </div>
-          {profiles.length > 2 ? (
-            <SmallSlider images={profiles} itemRef={imageRef} totalWidth={itemWidth} />
-          ) : (
-            <div className={styles.images}>
-              {profiles.map((img, index) => (
-                <img
-                  src={`https://image.tmdb.org/t/p/original${img.file_path}`}
-                  key={`${img.profile_path}s-${index}`}
-                />
-              ))}
             </div>
-          )}
+            {profiles.length > 2 ? (
+              <SmallSlider images={profiles} />
+            ) : (
+              <div className={styles.images}>
+                {profiles.map((img, index) => (
+                  <img
+                    src={`https://image.tmdb.org/t/p/original${img.file_path}`}
+                    key={`${img.profile_path}s-${index}`}
+                  />
+                ))}
+              </div>
+            )}
+          </div>
         </div>
-      </div>
-      <div className={styles.star_detail_inner_under}>
-        <div className={styles.movies_box}>
-          {data &&
-            known_for &&
-            known_for.map((movie) => <MovieSmallCard movie={movie} key={movie.imdb_id} />)}
-        </div>
-        <p>{biography}</p>
+        <div className={styles.star_detail_inner_under}>
+          <div className={styles.movies_box}>
+            {data &&
+              known_for &&
+              known_for.map((movie) => <MovieSmallCard movie={movie} key={movie.imdb_id} />)}
+          </div>
+          <p>{biography}</p>
 
-        {homepage && <ReadMore path={homepage}> Check Home Page</ReadMore>}
+          {homepage && <ReadMore path={homepage}> Check Home Page</ReadMore>}
+        </div>
       </div>
-    </div>
+    </>
   );
 };
