@@ -1,14 +1,10 @@
 <h1 align="center">
   <a href="">
-    <img src="/src/assets/movies.svg" alt="Project Banner Image">
+    <img src="/src/image/sakuMovie.png" alt="Project Banner Image">
   </a>
 </h1>
 
 # Movie Site Project
-
-Replace this readme with your own information about your project.
-
-Start by briefly describing the assignment in a sentence or two. Keep it short and to the point.
 
 ## Getting Started with the Project
 
