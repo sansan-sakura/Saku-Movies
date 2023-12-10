@@ -14,8 +14,7 @@ export const SearchResultByQuery = () => {
   const navigate = useNavigate();
   if (movieByQueryError) return null;
   if (movieByQueryLoading) return <LoadingFullPage />;
-  //   const genreName = genres.find((el) => el.id === Number(chosenGenre)).name;
-  console.log(movieByQueryData);
+
   return (
     <div className={styles.result}>
       <div className={styles.result_inner}>

@@ -26,7 +26,8 @@
   height: fit-content;
   width: 100vw;
   overflow: hidden;
-  z-index: 1000;
+  position: relative;
+  z-index: 999;
   flex: 1 0 100%;
   scroll-snap-align: start;
   display: flex;
@@ -45,7 +46,7 @@
   }
 
   &_inner {
-    width: fit-content;
+    width: 50%;
     position: absolute;
     bottom: 60%;
     left: 20%;

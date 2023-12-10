@@ -2,7 +2,8 @@ import { PlayButton } from "../PlayButton";
 import styles from "./HeroAside.module.scss";
 import useFetchMovie from "../../hooks/useFetchMovie";
 import { useHeroCarousel } from "../../context/HeroCarouselContext";
-import { Modal } from "../Modal";
+import createModal from "../Modal";
+import { Loading } from "../Loading";
 
 export const HeroAside = () => {
   const { asideMovies } = useHeroCarousel();
@@ -27,7 +28,8 @@ export const HeroAside = () => {
 };
 
 function AsideCard({ id, title, path, date, overview }) {
-  const { startVideo, setTriggerMovie, setStartVideo } = useFetchMovie(id);
+  const { startVideo, setTriggerMovie, setStartVideo, isVideoLoading } = useFetchMovie(id);
+
   function togglePlay() {
     if (startVideo.start) {
       setStartVideo((prev) => ({ ...prev, start: false }));
@@ -39,40 +41,37 @@ function AsideCard({ id, title, path, date, overview }) {
   }
   return (
     <div className={styles.card}>
-      {startVideo.start && (
-        <AsideVideoPlayer startVideo={startVideo} id={id} setStartVideo={setStartVideo} />
-      )}
       <div className={styles.left_side}>
         <img src={`https://image.tmdb.org/t/p/w780${path}`} />
       </div>
       <div className={styles.right_side}>
         <div className={styles.button}>
           <PlayButton
-            handleClick={togglePlay}
+            handleClick={() => {
+              togglePlay();
+              if (!isVideoLoading && startVideo.start) {
+                createModal(<AsideVideoPlayer startVideo={startVideo} id={id} />);
+              } else {
+                <Loading />;
+              }
+            }}
             key={id}
-            width="34px"
+            width="30px"
             position="2px"
             display="block"
           />
         </div>
         <h5>{title}</h5>
         <p className={styles.date}>released: {date}</p>
-        <p>{overview.split(" ").slice(0, 10).join(" ") + "..."}</p>
+        <p>{overview.split(" ").slice(0, 8).join(" ") + "..."}</p>
       </div>
     </div>
   );
 }
 
-function AsideVideoPlayer({ id, startVideo, setStartVideo }) {
-  console.log(startVideo);
+function AsideVideoPlayer({ startVideo }) {
   return (
-    <Modal>
-      <button
-        className={styles.close_btn}
-        onClick={() => setStartVideo((prev) => ({ ...prev, start: false }))}
-      >
-        &#x2715;
-      </button>
+    <>
       <div
         className={styles.hero_video_box}
         style={{ display: startVideo.start ? "block" : "none" }}
@@ -84,6 +83,6 @@ function AsideVideoPlayer({ id, startVideo, setStartVideo }) {
           src={`${startVideo.url}`}
         ></iframe>
       </div>
-    </Modal>
+    </>
   );
 }

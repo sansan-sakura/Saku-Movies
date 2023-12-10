@@ -31,6 +31,6 @@ const useFetchMovie = (id, movie = true) => {
         });
     }
   }, [isVideoLoading, videoData, videoError]);
-  return { startVideo, setStartVideo, setTriggerMovie };
+  return { startVideo, setStartVideo, setTriggerMovie, isVideoLoading };
 };
 export default useFetchMovie;

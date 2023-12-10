@@ -44,7 +44,7 @@ function Home() {
             <MainSlider windowWidth={windowWidth} movies={upcomingMovies} horizontal={false} />
           </div>
           <div>
-            <Title>Airing Today's TVs</Title>
+            <Title>Airing Today&rsquo;s TVs</Title>
             <MainSlider windowWidth={windowWidth} movies={airingTodayTvs} />
           </div>
           <div>

@@ -18,7 +18,6 @@ const SearchMovieProvider = ({ children }) => {
       : null;
   }, [option, query]);
 
-  console.log(qurrySearchPath);
   const {
     data: movieByGenreData,
     error: movieByGenreError,

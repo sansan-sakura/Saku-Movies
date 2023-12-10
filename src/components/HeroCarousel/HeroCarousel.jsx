@@ -42,10 +42,10 @@ function HeroCarousel() {
 
   useEffect(() => {
     function changeSlide() {
-      if (currentIndex < movies.length - 1) {
+      if (currentIndex < movies.length) {
         setCurrentIndex((prevIndex) => prevIndex + 1);
         heroRef.current.scrollLeft += itemWidth;
-      } else if (currentIndex === movies.length - 1) {
+      } else if (currentIndex === movies.length) {
         heroRef.current.scrollLeft -= itemWidth * movies.length;
         setCurrentIndex(0);
       }
@@ -93,7 +93,8 @@ function HeroCarousel() {
                       key={movies[i].id}
                       className={styles.pagination}
                       style={{
-                        backgroundColor: currentIndex === i ? "#fff" : "",
+                        backgroundColor:
+                          currentIndex === i || (currentIndex === 8 && i === 7) ? "#fff" : "",
                       }}
                     ></div>
                   ))}
